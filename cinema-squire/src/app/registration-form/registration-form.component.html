@@ -1,0 +1,32 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Enter a username:</ng-template>
+          <mat-form-field>
+              <input matInput placeholder="Username" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+              <button mat-button matStepperNext>Next</button>
+          </div>
+      </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" optional>
+      <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Enter a password:</ng-template>
+          <mat-form-field>
+              <input matInput placeholder="Password" formControlName="secondCtrl" required>
+          </mat-form-field>
+          <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+          </div>
+      </form>
+  </mat-step>
+  <mat-step>
+      <ng-template matStepLabel>Thank you!</ng-template>
+      <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+  </mat-step>
+</mat-horizontal-stepper>
