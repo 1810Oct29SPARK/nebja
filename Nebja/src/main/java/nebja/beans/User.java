@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="MOVIEUSER")
 public class User {

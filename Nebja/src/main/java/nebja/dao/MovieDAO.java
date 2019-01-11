@@ -3,6 +3,8 @@ package nebja.dao;
 import java.sql.Blob;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import nebja.beans.Movie;
 
 public interface MovieDAO {

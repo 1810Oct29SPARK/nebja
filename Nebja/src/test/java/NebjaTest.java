@@ -61,7 +61,8 @@ public void testTheUser() throws Exception{
 	Session session = Mockito.mock(Session.class);
 	List<User> use = new ArrayList<>();
 	Exception e = new Exception();
-	File f = Mockito.mock(File.class);
+	byte[] f= Mockito.mock(byte[].class);
+	File b = Mockito.mock(File.class);
 	String password = "purple";
 	String profileInfo = "stuff";
 	int id = 2;
@@ -71,7 +72,7 @@ public void testTheUser() throws Exception{
 	Mockito.lenient().doNothing().when(userdao).createUser(new User("Drunkjock23","alwayswasted","Life Is Pain"));
 	Mockito.lenient().doNothing().when(userdao).updatePassword(password, id);
 	Mockito.lenient().doNothing().when(userdao).updateprofileInfo(profileInfo, id);
-	Mockito.lenient().doNothing().when(userdao).updateProfilePhoto(f, id);
+	Mockito.lenient().doNothing().when(userdao).updateProfilePhoto(b, id);
 	Mockito.lenient().doNothing().when(userdao).updateUsername(password, id);
 }
 

@@ -1,22 +1,29 @@
 package nebja.dao;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.sql.DataSource;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import nebja.beans.User;
 import nebja.util.NebjaUtil;
 
 public class UserDAOImpl implements UserDAO {
 static SessionFactory sf = NebjaUtil.getSessionFactory();
+
+private DataSource datasource;
+private JdbcTemplate jdbcTemplate;
 
 /**
  * Gets all users from the database.
@@ -117,29 +124,32 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
  * to a file and stores the file, then returns the file.
  */
 	@Override
-	public File getPhoto(int id) {
+	public byte[] getPhoto(int id) {
 		File image = null;
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
 			User u = (User) s.get(User.class, id);
-		File imageFile = new File("myImage.jpg"); // we can put any name of file (just name of new file created).
+		 // we can put any name of file (just name of new file created).
 		byte[] getImageInBytes = u.getPicture();
 		if (u.getPicture()==null) {
-			imageFile = null;
-			return imageFile;
+			getImageInBytes = null;
+			return null;
 		}
-		FileOutputStream outputStream = new FileOutputStream(imageFile); // it will create new file (same location of class)
+		ByteArrayInputStream bis = new ByteArrayInputStream(getImageInBytes);
+		BufferedImage bi = ImageIO.read(bis);
+		ImageIO.write(bi,"jpg", new File("output.jpg"));
+		/*FileOutputStream outputStream = new FileOutputStream(); // it will create new file (same location of class)
 		outputStream.write(getImageInBytes); // image write in "myImage.jpg" file
 		outputStream.close(); // close the output stream
-		s.close();
+		s.close();*/
 		
-		return imageFile;
-		} catch (IOException e) {
+		return getImageInBytes;
+		} catch (Exception e) {
 		
 			e.printStackTrace();
 		}
 		
-		return image;
+		return null;
 		
 	}
 }
