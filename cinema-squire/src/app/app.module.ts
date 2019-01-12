@@ -5,6 +5,7 @@ import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
 import {MatStepperModule} from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -30,7 +31,8 @@ import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.compo
     HttpClientModule,
     MatStepperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]
