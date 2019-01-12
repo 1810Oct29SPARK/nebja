@@ -1,5 +1,6 @@
 package nebja.dao;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface UserDAO {
 	public void updatePassword(String password,int id);
 	public void updateprofileInfo(String profileInfo, int id);
 	public void updateProfilePhoto(File photo, int id);
-	public File getPhoto(int id);
+	public byte[] getPhoto(int id);
 
 }

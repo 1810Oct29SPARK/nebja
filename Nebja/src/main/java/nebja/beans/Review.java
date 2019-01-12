@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name ="REVIEW")
 public class Review {

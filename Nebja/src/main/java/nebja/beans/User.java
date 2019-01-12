@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table(name="MOVIEUSER")
 public class User {
@@ -28,6 +31,10 @@ public User(String username, String password,String profileinfo) {
 	this.username = username;
 	this.password = password;
 	this.profileinfo = profileinfo;
+}
+public User(String username, String password) {
+	this.username = username;
+	this.password = password;
 }
 public User() {
 	

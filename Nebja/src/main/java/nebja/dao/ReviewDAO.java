@@ -2,8 +2,9 @@ package nebja.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import nebja.beans.Review;
-import nebja.beans.User;
 
 public interface ReviewDAO {
 public List<Review> getAllReviews();

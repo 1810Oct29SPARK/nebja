@@ -13,6 +13,7 @@ import { NewsCarouselComponent } from './news-carousel/news-carousel.component';
 import {ApiClientService} from './api-client.service';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RandomMovieComponent } from './random-movie/random-movie.component'
+import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component'
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RandomMovieComponent } from './random-movie/random-movie.component'
     NewsCarouselComponent,
     RegistrationFormComponent,
     RandomMovieComponent
+    UpcomingMoviesComponent
   ],
   imports: [
     BrowserModule,

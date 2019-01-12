@@ -2,9 +2,9 @@ package nebja.dao;
 
 import java.util.List;
 
-import nebja.beans.Comment;
-import nebja.beans.User;
+import org.springframework.stereotype.Repository;
 
+import nebja.beans.Comment;
 public interface CommentDAO {
 	public List<Comment> getAllComments();
 	public List<Comment> getAllCommentsbyID(int id);

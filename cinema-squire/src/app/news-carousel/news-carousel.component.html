@@ -2,27 +2,9 @@
 
 	<h4>Entertainment News</h4>
 	<ul class="timeline">
-		<li>
-			<a target="_blank" href="{{ news.articles[0].url }}">{{ news.articles[0].title }}</a>
-			<p>{{ news.articles[0].content }}</p>
-		</li>
-		<li>
-			<a target="_blank" href="{{ news.articles[1].url }}">{{ news.articles[1].title }}</a>
-			<p>{{ news.articles[1].content }}</p>
-		</li>
-		<li>
-			<a target="_blank" href="{{ news.articles[2].url }}">{{ news.articles[2].title }}</a>
-			<p>{{ news.articles[2].content }}</p>
-		</li>
-		<li>
-			<a target="_blank" href="{{ news.articles[3].url }}">{{ news.articles[3].title }}</a>
-			<p>{{ news.articles[3].content }}</p>
-		</li>
-		<li>
-			<a target="_blank" href="{{ news.articles[4].url }}">{{ news.articles[4].title }}</a>
-			<p>{{ news.articles[4].content }}</p>
+		<li *ngFor="let article of news.articles">
+			<a target="_blank" href="{{ article.url }}">{{ article.title }}</a>
+			<p>{{ article.content }}</p>
 		</li>
 	</ul>
-
-
 </div>
