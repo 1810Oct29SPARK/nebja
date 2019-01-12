@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
@@ -14,6 +13,10 @@ import {ApiClientService} from './api-client.service';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RandomMovieComponent } from './random-movie/random-movie.component'
 import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component'
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { LoginComponent } from './login/login.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +25,9 @@ import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.compo
     SearchFormComponent,
     NewsCarouselComponent,
     RegistrationFormComponent,
-    RandomMovieComponent
-    UpcomingMoviesComponent
+    RandomMovieComponent,
+    UpcomingMoviesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,12 @@ import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.compo
     HttpClientModule,
     MatStepperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    MatButtonModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]
