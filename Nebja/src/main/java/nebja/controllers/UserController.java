@@ -22,35 +22,7 @@ import nebja.service.MovieUserService;
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
-	@Autowired
-	private MovieUserService movieUserService;
 	
-	@RequestMapping(value ="/all", method=RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<List<User>> getAllUsers() {
-		return new ResponseEntity<>(movieUserService.getAllUsers(),HttpStatus.OK);
-	}
-	
-	@GetMapping(value="{id}",produces = MediaType.IMAGE_JPEG_VALUE)
-	@ResponseBody
-	public ResponseEntity<byte[]> getUserPhoto(@PathVariable int id){
-		byte[] b = movieUserService.getPhoto(id);
-		
-		if (b==null) {
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
-		else {
-			return new ResponseEntity<>(b, HttpStatus.OK);
-		}
-		
-	}
-	
-	@GetMapping(value="/logout")
-	public String logOut(HttpServletRequest request) {
-		HttpSession hs = request.getSession();
-		hs.invalidate();
-		return "redirect:logincontroller/login";
-	}
 
 }
 
