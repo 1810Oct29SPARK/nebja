@@ -4,13 +4,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
 import {MatStepperModule} from '@angular/material/stepper';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { NewsCarouselComponent } from './news-carousel/news-carousel.component';
 import {ApiClientService} from './api-client.service';
-import { RegistrationFormComponent } from './registration-form/registration-form.component'
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component'
 
 @NgModule({
   declarations: [
@@ -18,14 +20,17 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     NavbarComponent,
     SearchFormComponent,
     NewsCarouselComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    UpcomingMoviesComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    MatStepperModule
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApiClientService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-<form class="searchForm">
+<form class="searchForm" (ngSubmit)="searchMovies(f)" #f="ngForm">
   <mat-form-field class="searchField">
-    <input matInput placeholder="Search for a movie" required>
+    <input matInput placeholder="Search for a movie" ngModel name="movie" required>
   </mat-form-field>
 </form>
