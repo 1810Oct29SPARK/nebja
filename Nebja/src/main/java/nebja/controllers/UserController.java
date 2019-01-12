@@ -1,7 +1,9 @@
 package nebja.controllers;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,5 +45,12 @@ public class UserController {
 		
 	}
 	
+	@GetMapping(value="/logout")
+	public String logOut(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		hs.invalidate();
+		return "redirect:logincontroller/login";
+	}
+
 }
 
