@@ -3,6 +3,7 @@ package nebja.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import nebja.service.LoginService;
 @Controller
 @RequestMapping(value="/logincontroller")
 public class LoginController {
+	Model m;
 	@Autowired
 	LoginService loginService;
 	
@@ -34,7 +36,7 @@ public class LoginController {
 		}
 		else {
 			attributes.addFlashAttribute("user",u);
-			return new RedirectView("profile");
+			return new RedirectView("user");
 			
 		}
 	}
@@ -44,5 +46,4 @@ public class LoginController {
 	}
 
 	
-
 }
