@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 h5 {
   color: white;
 }
@@ -26,4 +28,6 @@ h5 {
   margin-left: 15px;
 }
 
-
+form {
+  color: white;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiClientService } from '../api-client.service';
-import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-random-movie',
@@ -30,10 +30,10 @@ export class RandomMovieComponent implements OnInit {
   // TVMovie.checked, Thriller.checked, War.checked, Western.checked]
 
   constructor(private service: ApiClientService) { 
-    this.service.getRandomMovie().subscribe((data) => {
-      this.movies = data;
-      console.log(this.movies);
-    })
+    // this.service.getRandomMovie().subscribe((data) => {
+    //   this.movies = data;
+    //   console.log(this.movies);
+    // })
   }
 
   // To display a random movie
