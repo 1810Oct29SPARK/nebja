@@ -3,3 +3,20 @@
     <input matInput placeholder="Search for a movie" ngModel name="movie" required>
   </mat-form-field>
 </form>
+<div class="col-md-12" style="color:aliceblue">
+    <br>
+  <div class="row text-center">
+    <div *ngFor="let movie of movieResults.results" class="col-md-4">
+      <h4>{{ movie.title }}</h4>
+      <br>
+      <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" style="height:240px; width:200px"/>
+      <br>
+      <h5>Release Date: {{ movie.release_date }}</h5>
+      <br>
+      <h6>{{ movie.overview }}</h6>
+      <br>
+      <button mat-raised-button class="btn btn-primary" (click)="someFunction(movie.id)" [routerLink]="['reviews']">Leave A Review</button>
+      <button mat-raised-button class="btn btn-primary">Add to Watchlist</button>
+    </div>
+  </div>
+</div>

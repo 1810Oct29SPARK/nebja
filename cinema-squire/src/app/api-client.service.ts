@@ -17,6 +17,10 @@ export class ApiClientService {
     return this.http.get('https://api.themoviedb.org/3/search/movie?api_key=1e690b95d21161ee9cf641b3a944487a&query=' + movie);
   }
 
+  searchMovieById(id): Observable<any> {
+    return this.http.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=1e690b95d21161ee9cf641b3a944487a')
+  }
+
   getUpcomingMovies(): Observable<any> {
     return this.http.get('https://api.themoviedb.org/3/discover/movie?api_key=1e690b95d21161ee9cf641b3a944487a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=2019-01-11')
   }
