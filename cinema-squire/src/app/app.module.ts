@@ -7,6 +7,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,7 +16,16 @@ import { NewsCarouselComponent } from './news-carousel/news-carousel.component';
 import {ApiClientService} from './api-client.service';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RandomMovieComponent } from './random-movie/random-movie.component'
-import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component'
+import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component';
+import { ReviewsComponent } from './reviews/reviews.component'
+import { DataServiceService } from './data-service.service';
+import { Routes, RouterModule } from '@angular/router';
+
+
+const appRoutes: Routes = [
+  { path: '', component: SearchFormComponent },
+  { path: 'reviews', component: ReviewsComponent }
+]
 
 
 @NgModule({
@@ -27,6 +37,7 @@ import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.compo
     RegistrationFormComponent,
     RandomMovieComponent,
     UpcomingMoviesComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +51,11 @@ import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.compo
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    BarRatingModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [ApiClientService],
+  providers: [ApiClientService, DataServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
