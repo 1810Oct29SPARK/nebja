@@ -1,19 +1,22 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-h5 {
+h5, p {
   color: white;
+}
+
+form input {
+  color: white; 
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
+  background-color: black
 }
 
-.form-container > * {
+/* .form-container > * {
   width: 30%;
-  background-color: black;
-  color: white;
-}
+} */
 
 .genre-container {
   display: flex;
@@ -21,7 +24,8 @@ h5 {
 }
 
 .genre-group {
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
 }
 
 .rating-container > * {
@@ -30,4 +34,25 @@ h5 {
 
 form {
   color: white;
+}
+
+.randomMovieResult {
+  color: white;
+  border: 2px solid white;
+}
+
+.randomMovieResult img {
+  height: 280px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.randomMovieResult p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#group2 {
+  margin-left: 20px;
 }

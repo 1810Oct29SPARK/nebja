@@ -1,185 +1,51 @@
+<div *ngIf="stuff" class="randomMovieResult">
+    <img src="https://image.tmdb.org/t/p/w500{{randomMovie.poster_path}}"> 
+  <p> {{ randomMovie.title }}</p>
+  <p>{{ randomMovie.overview}}</p>
+</div>
+<br>
 <h5> Not sure what to watch? </h5>
-<p> {{ prompt }} </p>
 
 <div class="form-container">
-  <form class="randomSearchForm" (ngSubmit)="getRandomMovie()" #randomForm="ngForm">
-    <mat-form-field>
-      <h5> Actor</h5>
-      <input matInput id="actor" placeholder="Input an actor name" ngModel name="actor">
-    </mat-form-field>
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <br>
+    <h5> Rating </h5>
     <div class="rating-container">
-      <mat-checkbox id="ratedG" ngModel name="G-rating">G</mat-checkbox>
-      <mat-checkbox matInput id="ratedPG" ngModel name="PG-rating">PG</mat-checkbox>
-      <mat-checkbox matInput id="ratedPG-13" ngModel name="PG13-rating">PG-13</mat-checkbox>
-      <mat-checkbox matInput id="ratedR" ngModel name="R-rating">R</mat-checkbox>
-      <mat-checkbox matInput id="ratedNC-17" ngModel name="NC17-rating">NC-17</mat-checkbox>
-      <mat-checkbox matInput id="ratedNR" ngModel name="NR-rating">NR</mat-checkbox>
+      <mat-checkbox ngModel name="ratedG"> G </mat-checkbox>
+      <mat-checkbox ngModel name="ratedPG"> PG </mat-checkbox>
+      <mat-checkbox ngModel name="ratedPG13"> PG-13 </mat-checkbox>
+      <mat-checkbox ngModel name="ratedR"> R </mat-checkbox>
+      <mat-checkbox ngModel name="ratedNC17"> NC-17 </mat-checkbox>
+      <mat-checkbox ngModel name="ratedNR"> NR </mat-checkbox>
     </div>
+    <br>
+    <h5> Genres </h5>
     <div class="genre-container">
       <div class="genre-group">
-        <mat-form-field>
-          <mat-checkbox id="actionCheck" ngModel name="genre-Action">Action</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-checkbox id="adventureCheck" ngModel name="genre-Adventure">Adventure </mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="animationCheck" ngModel name="genre-Animation">Animation</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="comedyCheck" ngModel name="genre-Comedy">Comedy</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field> 
-            <mat-checkbox id="crimeCheck" ngModel name="genre-Crime">Crime</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="documentaryCheck" ngModel name="genre-Documentary">Documentary</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="dramaCheck" ngModel name="genre-Drama">Drama</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="familyCheck" ngModel name="genre-Family">Family</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="fantasyCheck" ngModel name="genre-Fantasy">Fantasy</mat-checkbox>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-checkbox id="historyCheck" ngModel name="genre-History">History</mat-checkbox>
-        </mat-form-field>
+        <mat-checkbox ngModel name="actionBox"> Action </mat-checkbox>
+        <mat-checkbox ngModel name="adventureBox"> Adventure </mat-checkbox>
+        <mat-checkbox ngModel name="adventureBox"> Animation </mat-checkbox>
+        <mat-checkbox ngModel name="comedyBox"> Comedy </mat-checkbox>
+        <mat-checkbox ngModel name="crimeBox"> Crime </mat-checkbox>
+        <mat-checkbox ngModel name="docBox"> Documentary </mat-checkbox>
+        <mat-checkbox ngModel name="dramaBox"> Drama </mat-checkbox>
+        <mat-checkbox ngModel name="familyBox"> Family </mat-checkbox>
+        <mat-checkbox ngModel name="fantasyBox"> Fantasy </mat-checkbox>
+        <mat-checkbox ngModel name="historyBox"> History </mat-checkbox>
       </div>
-      <div class="genre-group">
-        <mat-checkbox id="horrorCheck" ngModel name="genre-Horror">Horror</mat-checkbox>
-        <mat-checkbox id="musicCheck" ngModel name="genre-Music">Music</mat-checkbox>
-        <mat-checkbox id="mysteryCheck" ngModel name="genre-Mystery">Mystery</mat-checkbox>
-        <mat-checkbox id="romanceCheck" ngModel name="genre-Romance">Romance</mat-checkbox>
-        <mat-checkbox id="scienceFictionCheck" ngModel name="genre-ScienceFiction">Science Fiction</mat-checkbox>
-        <mat-checkbox id="tvMovieCheck" ngModel name="genre-TvMovie">TV Movie</mat-checkbox>
-        <mat-checkbox id="thrillerCheck" ngModel name="genre-Thriller">Thriller</mat-checkbox>
-        <mat-checkbox id="warCheck" ngModel name="genre-War">War</mat-checkbox>
-        <mat-checkbox id="westernCheck" ngModel name="genre-Western">Western</mat-checkbox>
+      <div class="genre-group" id="group2">
+        <mat-checkbox ngModel name="horrorBox"> Horror </mat-checkbox>
+        <mat-checkbox ngModel name="musicBox"> Music </mat-checkbox>
+        <mat-checkbox ngModel name="mysteryBox"> Mystery </mat-checkbox>
+        <mat-checkbox ngModel name="romanceBox"> Romance </mat-checkbox>
+        <mat-checkbox ngModel name="sciFiBox"> Science Fiction </mat-checkbox>
+        <mat-checkbox ngModel name="tvMovieBox"> TV Movie </mat-checkbox>
+        <mat-checkbox ngModel name="thrillerBox"> Thriller </mat-checkbox>
+        <mat-checkbox ngModel name="warBox"> War </mat-checkbox>
+        <mat-checkbox ngModel name="westernBox"> Western </mat-checkbox>
       </div>
-      </mat-form-field>
     </div>
-    <button mat-raised-button (click)="getRandomMovie()">Submit</button>
+    <br>
+    <button mat-raised-button>Submit</button>
   </form>
 </div>
-
-<!-- <form id="frm1" (ngSubmit)="onSubmit()">
-  <div class="form-container">
-    <mat-form-field>
-      <input matInput id="actor" placeholder="Actor" #ActorName (keyup)="actorOnKey(ActorName.value)" ngModel name="actor">
-    </mat-form-field>
-    <br>
-    <p>{{randomFormData.name}}</p>
-    <h6> Rating </h6>
-    <div class="rating-container">
-      <mat-checkbox type="checkbox" id="ratedG" ngModel name="G-rating">G</mat-checkbox>
-      <mat-checkbox type="checkbox" id="ratedPG" ngModel name="PG-rating">PG</mat-checkbox>
-      <mat-checkbox type="checkbox" id="ratedPG-13" ngModel name="PG13-rating">PG-13</mat-checkbox>
-      <mat-checkbox type="checkbox" id="ratedR" ngModel name="R-rating">R</mat-checkbox>
-      <mat-checkbox type="checkbox" id="ratedNC-17" ngModel name="NC17-rating">NC-17</mat-checkbox>
-      <mat-checkbox type="checkbox" id="ratedNR" ngModel name="NR-rating">NR</mat-checkbox>
-    </div>
-    <br>
-    <h6> Genre </h6>
-    <div class="genre-container">
-      <div class="genre-group">
-        <mat-checkbox type="checkbox" id="actionCheck" ngModel name="genre-Action">Action</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="adventureCheck"
-      ngModel
-      name="genre-Adventure">Adventure </mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="animationCheck"
-      ngModel
-      name="genre-Animation">Animation</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="comedyCheck"
-      ngModel
-      name="genre-Comedy">Comedy</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="crimeCheck"
-      ngModel
-      name="genre-Crime">Crime</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="documentaryCheck"
-      ngModel
-      name="genre-Documentary">Documentary</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="dramaCheck"
-      ngModel
-      name="genre-Drama">Drama</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="familyCheck"
-      ngModel
-      name="genre-Family">Family</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="fantasyCheck"
-      ngModel
-      name="genre-Fantasy">Fantasy</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="historyCheck"
-      ngModel
-      name="genre-History">History</mat-checkbox>
-      </div>
-      <div class="genre-group">
-        <mat-checkbox
-        type="checkbox"
-      id="horrorCheck"
-      ngModel
-      name="genre-Horror">Horror</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="musicCheck"
-      ngModel
-      name="genre-Music">Music</mat-checkbox>
-        <mat-checkbox 
-        type="checkbox"
-      id="mysteryCheck"
-      ngModel
-      name="genre-Mystery">Mystery</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="romanceCheck"
-      ngModel
-      name="genre-Romance">Romance</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="scienceFictionCheck"
-      ngModel
-      name="genre-ScienceFiction">Science Fiction</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="tvMovieCheck"
-      ngModel
-      name="genre-TvMovie">TV Movie</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="thrillerCheck"
-      ngModel
-      name="genre-Thriller">Thriller</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="warCheck"
-      ngModel
-      name="genre-War">War</mat-checkbox>
-        <mat-checkbox
-        type="checkbox"
-      id="westernCheck"
-      ngModel
-      name="genre-Western">Western</mat-checkbox>
-      </div>
-    </div>
-    <button mat-raised-button (click)="this.getRandomMovie()">Submit</button>
-  </div>
-</form> -->
