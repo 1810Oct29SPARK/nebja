@@ -1,0 +1,36 @@
+<div class="container" *ngIf="movie">
+  <div>
+      <div class="row">
+          <div class="col-md-4">
+              <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="thumbnail"/>
+          </div>
+          <div class="col-md-8">
+              <h2></h2>
+              <ul class="list-group">
+                  <li class="list-group-item"><strong>Genre:</strong></li>
+
+              </ul>
+          </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+          <div class="well">
+              <h4>Plot Synopsis</h4>
+              <p id="plot"></p>
+              <hr>
+              <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">IMDB Page</a>
+              <a href="index.html" class="btn btn-default">Back to Search</a>
+          </div>
+      </div>
+  </div>
+  <h2>Leave A Review</h2>
+  <form style="color:aliceblue" #form="ngForm" (onSubmit)="submitReview(form)">
+    <bar-rating [theme]="'stars'" name="rating" [(ngModel)]="formRating" [max]="5" required></bar-rating>
+    <mat-form-field class="balls">
+      <textarea matInput ngModel placeholder="Review Text"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button type="submit">Submit Review</button>
+  </form>
+</div>
