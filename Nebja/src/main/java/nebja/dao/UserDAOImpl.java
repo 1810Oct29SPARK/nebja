@@ -11,6 +11,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.sql.DataSource;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -48,6 +49,7 @@ private JdbcTemplate jdbcTemplate;
 	public void createUser(User user) {
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
+			user.setUserrole("USER");
 			s.persist(user);
 			tx.commit();
 			s.close();
@@ -152,5 +154,39 @@ private JdbcTemplate jdbcTemplate;
 		return null;
 		
 	}
+@SuppressWarnings("deprecation")
+@Override
+public User getUserByUsername(String username ) {
+	try(Session s = sf.getCurrentSession()){
+		Transaction tx = s.beginTransaction();
+		@SuppressWarnings("rawtypes")
+		org.hibernate.Query query = s.createQuery("from User where username= :username").setParameter("username", username);
+		List list = query.list();
+		User user = (User) query.uniqueResult();
+		return user;
+		
+	}	
+
+}
+@Override
+public void updateUserRole(String userrole, int id) {
+	try(Session s = sf.getCurrentSession()){
+		Transaction tx = s.beginTransaction();
+		User u = (User) s.get(User.class, id);
+		if (userrole.equals("USER")) {
+			u.setUserrole("USER");
+			tx.commit();
+			s.close();
+		}
+		if (userrole.equals("MODERATOR")) {
+			u.setUserrole("MODERATOR");
+		}
+		else {
+			u.setUserrole("USER");
+			
+		}
+			
+		}
+}
 }
 

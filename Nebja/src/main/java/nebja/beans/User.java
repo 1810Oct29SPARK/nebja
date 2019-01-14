@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="User")
 @Table(name="MOVIEUSER")
 public class User {
 public User(String username, String password, byte[] picture, String profileinfo, int userid) {
@@ -55,6 +55,8 @@ private String password;
 private byte[] picture;
 @Column (name="PROFILE_INFO")
 private String profileinfo;
+@Column (name="USER_ROLE")
+private String userrole;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "COMMENT_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private Comment comment;
@@ -75,6 +77,15 @@ public void setMovies(List<Movie> movies) {
 public String getUsername() {
 	return username;
 }
+
+public String getUserRole() {
+	return userrole;
+}
+
+public void setUserrole(String userrole) {
+	this.userrole = userrole;
+}
+
 public void setUsername(String username) {
 	this.username = username;
 }
