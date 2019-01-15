@@ -9,9 +9,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BarRatingModule } from 'ngx-bar-rating';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './home/navbar/navbar.component';
-import { SearchFormComponent } from './home/search-form/search-form.component';
-import { NewsCarouselComponent } from './home/news-carousel/news-carousel.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { NewsCarouselComponent } from './news-carousel/news-carousel.component';
 import { ApiClientService} from './api-client.service';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component';
