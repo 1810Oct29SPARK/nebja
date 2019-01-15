@@ -17,16 +17,18 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component';
 import { ReviewsComponent } from './reviews/reviews.component'
 import { DataServiceService } from './data-service.service';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProfileInformationComponent } from './profile-information/profile-information.component';
 import { YoutubeTrailersComponent } from './youtube-trailers/youtube-trailers.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { ModeratorComponent } from './moderator/moderator.component'
 
-
-const appRoutes: Routes = [
+const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'reviews', component: ReviewsComponent }
-]
+  { path: 'reviews', component: ReviewsComponent },
+  { path: 'profile', component: ProfileInformationComponent},
+  { path: 'moderator', component: ModeratorComponent}
+];
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     ReviewsComponent,
     ProfileInformationComponent,
     YoutubeTrailersComponent,
-    HomeComponent
+    HomeComponent,
+    ModeratorComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     BarRatingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(routes)
   ],
   providers: [ApiClientService, DataServiceService],
   bootstrap: [AppComponent]

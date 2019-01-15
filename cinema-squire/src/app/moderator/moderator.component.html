@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+<form class="searchForm" (ngSubmit)="userSearch(search)" #search="ngForm">
+  <mat-form-field class="searchField">
+    <input matInput placeholder="Search for a user by username" ngModel name="usernameInput" required>
+  </mat-form-field>
+</form>
+
+<div *ngIf="data"> 
+<div *ngFor="let user of users">
+  <div>
+    <img [src]="'data:image/jpeg:base64,'+user.picture">
+    <p> {{user.username}}</p>
+    <button (click)="replaceUserImg()"> Change Image </button>
+    <button> Ban </button>
+  </div>
+
+</div>
+
+</div>
