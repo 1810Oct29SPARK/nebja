@@ -9,6 +9,13 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) { }
 
+  login(f, e): Observable<any> {
+    return this.http.post('http://localhost:8080/Nebja/login/sent', {
+      "username": f,
+      "password": e
+    });
+  }
+
   getNews(): Observable<any> {
     return this.http.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=15&apiKey=fd9ec8dbca4c475395e2bcdde1262369');
   }

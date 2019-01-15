@@ -17,13 +17,13 @@
         <span>Disable alerts</span>
       </button>
     </mat-menu>
-    
+
     <button mat-icon-button [matMenuTriggerFor]="menu2">
       <mat-icon class="navIcon">person</mat-icon>
     </button>
     <mat-menu #menu2="matMenu">
-      <button mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample"
-      (click)="frame.show()" mdbWavesEffect>
+      <button mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+        mdbWavesEffect>
         <span>Login</span>
       </button>
       <button mat-menu-item>
@@ -33,12 +33,12 @@
         <span>View Profile</span>
       </button>
     </mat-menu>
-    
+
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
@@ -48,24 +48,24 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fa fa-envelope prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" [formControl]="loginFormModalEmail" class="form-control validate"
-            mdbInputDirective>
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-        </div>
+        <form (ngSubmit)="login(f)" #f="ngForm">
+          <div class="md-form mb-5">
+            <mat-form-field class="searchField">
+              <input matInput placeholder="Username" ngModel name="username" required>
+            </mat-form-field>
+          </div>
 
-        <div class="md-form mb-4">
-          <i class="fa fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" [formControl]="loginFormModalPassword" class="form-control validate"
-            mdbInputDirective>
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-        </div>
+          <div class="md-form mb-4">
+            <mat-form-field class="searchField">
+              <input matInput placeholder="Password" ngModel name="password" required>
+            </mat-form-field>
+          </div>
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="red" class="waves-light" mdbWavesEffect>Login</button>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" mdbBtn color="red" class="waves-light" mdbWavesEffect>Login</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</div>
