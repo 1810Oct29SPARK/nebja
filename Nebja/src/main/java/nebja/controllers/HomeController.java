@@ -15,11 +15,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -121,4 +119,13 @@ public class HomeController {
 			movieUserService.updateUsername(username, 61);
 			return new ResponseEntity<User>(theuser,HttpStatus.OK);
 		}
+		
+		
+		@RequestMapping (value = "/newuser", method = RequestMethod.POST)
+		@ResponseBody
+		public void createUser(@RequestBody MultiValueMap<String, String> formParams){
+		movieUserService.createUser(new User(formParams.getFirst("Username"), formParams.getFirst("Password"), formParams.getFirst("Profile")));
+			
+		}
+		
 		}
