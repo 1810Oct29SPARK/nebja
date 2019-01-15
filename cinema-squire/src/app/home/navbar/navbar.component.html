@@ -1,0 +1,71 @@
+<mat-toolbar class="toolbar" color="primary">
+
+  <mat-toolbar-row>
+    <span>Cinema Squire</span>
+    <span class="navSpacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="navIcon">menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>Reviews</span>
+      </button>
+      <button mat-menu-item>
+        <span>Watch List</span>
+      </button>
+      <button mat-menu-item>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu2">
+      <mat-icon class="navIcon">person</mat-icon>
+    </button>
+    <mat-menu #menu2="matMenu">
+      <button mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample"
+      (click)="frame.show()" mdbWavesEffect>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item>
+        <span>Create Account</span>
+      </button>
+      <button mat-menu-item disabled>
+        <span>View Profile</span>
+      </button>
+    </mat-menu>
+    
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" [formControl]="loginFormModalEmail" class="form-control validate"
+            mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" [formControl]="loginFormModalPassword" class="form-control validate"
+            mdbInputDirective>
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="red" class="waves-light" mdbWavesEffect>Login</button>
+      </div>
+    </div>
+  </div>
+</div>

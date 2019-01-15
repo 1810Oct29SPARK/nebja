@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 
 import nebja.beans.User;
@@ -28,7 +29,7 @@ public class MovieUserServiceImpl implements MovieUserService {
 	}
 
 	@Override
-	public void updateUsername(String username1, int id) {
+	public void updateUsername(String username1, Integer id) {
 		// TODO Auto-generated method stub
 		md.updateUsername(username1, id);
 	}
@@ -55,6 +56,13 @@ public class MovieUserServiceImpl implements MovieUserService {
 	public byte[] getPhoto(int id) {
 		// TODO Auto-generated method stub
 		return md.getPhoto(id);
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		
+		return md.getUserByUsername(username);
 	}
 
 }
