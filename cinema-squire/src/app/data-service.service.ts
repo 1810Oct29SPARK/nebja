@@ -8,6 +8,8 @@ export class DataServiceService {
   user: any;
 
   movieId: number;
+  userId: number;
+  userImg: any;
 
   constructor() { }
 
@@ -25,5 +27,21 @@ export class DataServiceService {
 
   setMovieId(id) {
     this.movieId = id;
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+  setUserId(id) {
+    this.userId = id;
+  }
+
+  getUserImg() {
+    return this.userImg;
+  }
+
+  setUserImg(img) {
+    this.userImg = img;
   }
 }

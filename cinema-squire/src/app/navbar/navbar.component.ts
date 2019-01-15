@@ -31,6 +31,20 @@ export class NavbarComponent implements OnInit {
   })
  }
 
+ 
+  // searchMovies(movie: NgForm) {
+  //   this.service.searchMovie(movie.value.movie).subscribe((data) => {
+  //     this.movieResults = data;
+  //     console.log(this.movieResults);
+  //   })
+  // }
+  
+
+  newAccount(form: NgForm) {
+    this.service.createAccount(form.value.Username, form.value.Password, form.value.Profile).subscribe((data) => {
+      console.log(data);
+    })
+  }
   ngOnInit() {
     this.user = this.dataService.getUser();
   }

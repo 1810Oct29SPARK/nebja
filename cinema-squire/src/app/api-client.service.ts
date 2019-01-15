@@ -25,6 +25,10 @@ export class ApiClientService {
     });
   }
 
+  getAllUsers() {
+    return this.http.get('http://localhost:8080/Nebja/home/')
+  }
+  
   uploadPhoto(photo) {
     return this.http.post('', {
       "picture": photo
