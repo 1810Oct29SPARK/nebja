@@ -22,14 +22,17 @@
       <mat-icon class="navIcon">person</mat-icon>
     </button>
     <mat-menu #menu2="matMenu">
-      <button mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+      <button *ngIf="!user" mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
         mdbWavesEffect>
         <span>Login</span>
       </button>
-      <button mat-menu-item>
+      <button *ngIf="user" mat-menu-item (click)="logout()">
+          <span>Logout</span>
+        </button>
+      <button *ngIf="!user" mat-menu-item>
         <span>Create Account</span>
       </button>
-      <button mat-menu-item disabled>
+      <button mat-menu-item [disabled]="!user">
         <span>View Profile</span>
       </button>
     </mat-menu>
@@ -50,15 +53,11 @@
       <div class="modal-body mx-3">
         <form (ngSubmit)="login(f)" #f="ngForm">
           <div class="md-form mb-5">
-            <mat-form-field class="searchField">
-              <input matInput placeholder="Username" ngModel name="username" required>
-            </mat-form-field>
+              <input class="form-control" placeholder="Username" ngModel name="username" required>
           </div>
 
           <div class="md-form mb-4">
-            <mat-form-field class="searchField">
-              <input matInput placeholder="Password" ngModel name="password" required>
-            </mat-form-field>
+              <input type="password" class="form-control" placeholder="Password" ngModel name="password" required>
           </div>
 
 

@@ -16,6 +16,14 @@ export class ApiClientService {
     });
   }
 
+  createAccount(user, pass, profileInfo): Observable<any> {
+    return this.http.post('http://localhost:8080/Nebja/home/newuser', {
+      "Username": user,
+      "Password": pass,
+      "Profile": profileInfo
+    });
+  }
+
   getNews(): Observable<any> {
     return this.http.get('https://newsapi.org/v2/top-headlines?country=us&category=entertainment&pageSize=15&apiKey=fd9ec8dbca4c475395e2bcdde1262369');
   }
