@@ -5,11 +5,21 @@ import { Injectable } from '@angular/core';
 })
 export class DataServiceService {
 
+  user: any;
+
   movieId: number;
   userId: number;
   userImg: any;
 
   constructor() { }
+
+  setUser(u) {
+    this.user = u;
+  }
+
+  getUser() {
+    return this.user;
+  }
 
   getMovieId() {
     return this.movieId;

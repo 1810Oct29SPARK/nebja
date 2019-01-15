@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from '../data-service.service';
+import { ApiClientService } from '../api-client.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-information',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileInformationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataServiceService, private service: ApiClientService) { }
+
+  user: any;
+
+  uploadPhoto(f: NgForm) {
+    console.log(f);
+    this.service.uploadPhoto(f.value.picture).subscribe((data) => {
+
+    })
+  }
 
   ngOnInit() {
+    this.user = this.dataService.getUser();
+    console.log(this.user);
   }
 
 }
