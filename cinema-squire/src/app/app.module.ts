@@ -12,9 +12,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { NewsCarouselComponent } from './news-carousel/news-carousel.component';
 import {ApiClientService} from './api-client.service';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
-import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component';
-import { ProfileInformationComponent } from './profile-information/profile-information.component';
-import { YoutubeTrailersComponent } from './youtube-trailers/youtube-trailers.component'
+import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component'
 
 @NgModule({
   declarations: [
@@ -23,9 +21,7 @@ import { YoutubeTrailersComponent } from './youtube-trailers/youtube-trailers.co
     SearchFormComponent,
     NewsCarouselComponent,
     RegistrationFormComponent,
-    UpcomingMoviesComponent,
-    ProfileInformationComponent,
-    YoutubeTrailersComponent
+    UpcomingMoviesComponent
   ],
   imports: [
     BrowserModule,

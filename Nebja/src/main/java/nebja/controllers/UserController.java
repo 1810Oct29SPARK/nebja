@@ -23,10 +23,6 @@ import nebja.service.MovieUserService;
 @RequestMapping(value="/user")
 public class UserController {
 	
-	@Autowired
-	private MovieUserService movieUserService;
-
-	
 
 }
 
