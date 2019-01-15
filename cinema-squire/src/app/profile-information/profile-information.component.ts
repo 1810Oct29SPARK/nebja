@@ -16,6 +16,9 @@ export class ProfileInformationComponent implements OnInit {
 
   uploadPhoto(f: NgForm) {
     console.log(f);
+    this.service.uploadPhoto(f.value.picture).subscribe((data) => {
+
+    })
   }
 
   ngOnInit() {

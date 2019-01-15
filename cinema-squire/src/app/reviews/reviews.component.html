@@ -2,33 +2,35 @@
   <div>
       <div class="row">
           <div class="col-md-4">
-              <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="thumbnail"/>
+              <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="thumbnail" width="300px" height="400px"/>
           </div>
           <div class="col-md-8">
-              <h2></h2>
+              <h2 style="color:aliceblue">{{movie.title}}</h2>
+              <h4 style="color:aliceblue">{{movie.tagline}}</h4>
               <ul class="list-group">
-                  <li class="list-group-item"><strong>Genre:</strong></li>
-
+                  <li class="list-group-item"><strong>Release Date: {{movie.release_date}}</strong></li>
+                  <li class="list-group-item"><strong>Budget: ${{movie.budget}}</strong></li>
+                  <li class="list-group-item"><strong>Revenue: ${{movie.revenue}}</strong></li>
+                  <li class="list-group-item"><strong>Runtime: {{movie.runtime}} mins</strong></li>
               </ul>
           </div>
       </div>
       <br>
       <br>
       <div class="row">
-          <div class="well">
+          <div class="well" style="color:aliceblue">
               <h4>Plot Synopsis</h4>
-              <p id="plot"></p>
+              <p id="plot">{{movie.overview}}</p>
               <hr>
-              <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">IMDB Page</a>
-              <a href="index.html" class="btn btn-default">Back to Search</a>
+              <button routerLink="/" class="btn btn-default">Back to Search</button>
           </div>
       </div>
   </div>
   <h2>Leave A Review</h2>
   <form style="color:aliceblue" #form="ngForm" (onSubmit)="submitReview(form)">
-    <bar-rating [theme]="'stars'" name="rating" [(ngModel)]="formRating" [max]="5" required></bar-rating>
+    <bar-rating [theme]="'stars'" name="rating" ngModel [max]="5" required></bar-rating>
     <mat-form-field class="balls">
-      <textarea matInput ngModel placeholder="Review Text"></textarea>
+      <textarea matInput ngModel name="reviewText" placeholder="Review Text"></textarea>
     </mat-form-field>
     <br>
     <button mat-raised-button type="submit">Submit Review</button>
