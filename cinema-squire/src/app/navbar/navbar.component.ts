@@ -31,6 +31,11 @@ export class NavbarComponent implements OnInit {
   })
  }
 
+ logout() {
+   this.dataService.setUser(null);
+   this.router.navigateByUrl('/');
+ }
+
  
   // searchMovies(movie: NgForm) {
   //   this.service.searchMovie(movie.value.movie).subscribe((data) => {

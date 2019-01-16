@@ -102,8 +102,8 @@ public class UserController {
 		
 		}
 		
-		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/review", method = RequestMethod.POST, consumes= "application/json")
+		@CrossOrigin(value="http://localhost:4200/")
+		@PostMapping (value = "/review")
 		public ResponseEntity<?> getReview(@RequestBody String rev) {
 			System.out.println(rev);
 			return new ResponseEntity<>(HttpStatus.OK);

@@ -20,7 +20,10 @@ export class ReviewsComponent implements OnInit {
   constructor(private dataService: DataServiceService, private service: ApiClientService) { }
 
   submitReview(form: NgForm){
-    this.service.submitReview(form.value.rating, form.value.reviewText, this.user.userid);
+    let rating: string = form.value.rating;
+    let review: string = form.value.reviewText;
+    let userId: string = this.user.userid;
+    console.log(this.service.submitReview(rating, review, userId));
     this.reviews = this.service.getReviewsByMovieId(this.movie.id);
   }
 

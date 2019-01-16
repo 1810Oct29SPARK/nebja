@@ -24,12 +24,14 @@ export class ApiClientService {
   }
 
   getReviewsByMovieId(id): Observable<any> {
-    return this.http.get('http://localhost:8080/Nebja/');
+    return this.http.get('http://localhost:8080/Nebja/'); 
   }
 
-  submitReview(score, review, userId) {
-    this.http.post('http://localhost:8080/Nebja/', {
-
+  submitReview(score, review, userId): Observable<any>{
+    return this.http.post('http://localhost:8080/Nebja/user/review', {
+      "score": score,
+      "review": review,
+      "userId": userId
     });
   }
 
