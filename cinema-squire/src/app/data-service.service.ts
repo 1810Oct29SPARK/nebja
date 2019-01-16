@@ -10,6 +10,7 @@ export class DataServiceService {
   movieId: number;
   userId: number;
   userImg: any;
+  userRole: string;
 
   constructor() { }
 
@@ -43,5 +44,13 @@ export class DataServiceService {
 
   setUserImg(img) {
     this.userImg = img;
+  }
+
+  getUserRole() {
+    return this.userRole;
+  }
+
+  setUserRole(role) {
+    this.userRole = role;
   }
 }
