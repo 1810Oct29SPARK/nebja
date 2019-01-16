@@ -1,5 +1,6 @@
 package nebja.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
@@ -28,6 +29,14 @@ public Review(String moviereview) {
 	this.moviereview = moviereview;
 }
 
+public Review(String moviereview,int reviewscore,int moviesid,int usersid) {
+	super();
+	this.reviewscore = reviewscore;
+	this.moviereview = moviereview;
+	this.moviesid = moviesid;
+	this.usersid = usersid;
+}
+
 public Review() {
 }
 @Id
@@ -39,9 +48,16 @@ private int reviewid;
 private String moviereview;
 @Column(name="REVIEW_SCORE")
 private int reviewscore;
-@ManyToOne(fetch = FetchType.EAGER)
+@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinColumn(name = "MOVIE_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private Movie movieid;
+@Column(name="MOVIE_IDS")
+public int moviesid;
+@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+@JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
+private User userid;
+@Column(name="USERS_ID")
+public int usersid;
 public int getReviewid() {
 	return reviewid;
 }
@@ -54,6 +70,7 @@ public String getMoviereview() {
 public void setMoviereview(String moviereview) {
 	this.moviereview = moviereview;
 }
+
 @Override
 public int hashCode() {
 	final int prime = 31;
