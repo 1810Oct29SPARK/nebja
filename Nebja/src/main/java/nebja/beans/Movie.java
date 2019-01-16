@@ -29,9 +29,12 @@ public Movie(int movieid, String title, double avgscore) {
 	this.title = title;
 	this.avgscore = avgscore;
 }
+
+public Movie(int movieid, String title) {
+	this.movieid = movieid;
+	this.title = title;
+}
 @Id
-@GeneratedValue(strategy= GenerationType.AUTO,generator="movieSequence")
-@SequenceGenerator(allocationSize=1, name="movieSequence", sequenceName= "SQ_MOVIE_PK")
 @Column(name="MOVIE_ID")
 private int movieid;
 @Column(name="MOVIE_PHOTO")
