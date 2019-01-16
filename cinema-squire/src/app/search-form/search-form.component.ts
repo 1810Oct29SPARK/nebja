@@ -12,6 +12,8 @@ export class SearchFormComponent implements OnInit {
 
   loaded = false;
 
+  user: any;
+
   movieResults: any;
 
   constructor(private service: ApiClientService, private dataService: DataServiceService) { }
@@ -32,6 +34,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.dataService.getUser();
   }
 
 }

@@ -30,12 +30,12 @@
       </div>
   </div>
   <h2>Leave A Review</h2>
-  <form style="color:aliceblue" #form="ngForm" (onSubmit)="submitReview(form)">
+  <form style="color:aliceblue" (ngSubmit)="submitReview(f)" #f="ngForm">
     <bar-rating [theme]="'stars'" name="rating" ngModel [max]="5" required></bar-rating>
-    <mat-form-field class="balls">
+    <mat-form-field>
       <textarea matInput ngModel name="reviewText" placeholder="Review Text"></textarea>
     </mat-form-field>
     <br>
-    <button mat-raised-button type="submit">Submit Review</button>
+    <button type="submit" mat-raised-button>Submit Review</button>
   </form>
 </div>

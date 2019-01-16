@@ -17,6 +17,22 @@ export class ApiClientService {
     });
   }
 
+  addMovie(id, title) {
+    this.http.post('http://localhost:8080/Nebja/', {
+
+    });
+  }
+
+  getReviewsByMovieId(id): Observable<any> {
+    return this.http.get('http://localhost:8080/Nebja/');
+  }
+
+  submitReview(score, review, userId) {
+    this.http.post('http://localhost:8080/Nebja/', {
+
+    });
+  }
+
   createAccount(user, pass, profileInfo): Observable<any> {
     return this.http.post('http://localhost:8080/Nebja/home/newuser', {
       "Username": user,
