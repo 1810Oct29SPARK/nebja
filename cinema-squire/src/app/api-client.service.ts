@@ -49,4 +49,18 @@ export class ApiClientService {
   getUpcomingMovies(): Observable<any> {
     return this.http.get('https://api.themoviedb.org/3/discover/movie?api_key=1e690b95d21161ee9cf641b3a944487a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=2019-01-11')
   }
+
+  deleteUser(id) {
+    return this.http.delete('http://localhost:8080/Nebja/home/')
+  }
+
+  deleteReview(): Observable <any> {
+    return this.http.delete('http://localhost:8080/Nebja/home/')
+  }
+
+  changeUserRole() {
+    // return this.http.put('http://localhost:8080/Nebja/home/', )
+  }
+
+
 }

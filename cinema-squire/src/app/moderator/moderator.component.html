@@ -6,15 +6,63 @@
   </mat-form-field>
 </form>
 
-<div *ngIf="data"> 
-<div *ngFor="let user of users">
-  <div>
-    <img [src]="'data:image/jpeg:base64,'+user.picture">
-    <p> {{user.username}}</p>
-    <button (click)="replaceUserImg()"> Change Image </button>
-    <button> Ban </button>
-  </div>
-
+<!-- *ngIf="data" -->
+<!-- empty profile image: 
+  http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg -->
+<!-- <div>
+<div *ngFor="let user of users"> -->
+<div id="user-display">
+  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
+  <!-- <p> {{user.username}}</p> -->
+  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
+  <p>Username</p>
+  <button (click)="replaceUserImg()"> Change Image </button>
+  <button (click)="banUser()"> Ban </button>
 </div>
 
+<!-- <div *ngFor="let review of reviews"> -->
+  <!-- <div *ngIf="-->
+<div id="reviews-display">
+  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
+  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
+  <!-- <p> {{user.username}}</p> -->
+  <p> Username </p>
+  <!-- <p> {{review.title}} </p> -->
+  <p> Review Title </p>
+  <!-- <p> {{review.text}} </p> -->
+  <p> This is where the review text will go </p>
+  <button (click)="removeReview()"> Remove </button>
+  <button (click)="approveReview()"> Approve </button>
+</div>
+
+
+<!-- </div>
+
+</div> -->
+
+
+<!-- *ngIf="userRole == admin" -->
+<div>
+  <form class="searchForm" (ngSubmit)="userSearch(search)" #search="ngForm">
+    <mat-form-field class="searchField">
+      <input matInput placeholder="Search for a user by username" ngModel name="searchForNewMod" required>
+    </mat-form-field>
+  </form>
+  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
+  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
+  <!-- <p> {{user.username}}</p> -->
+  <p> Username </p>
+  <button (click)="promoteToMod()"> Promote to Moderator </button>
+</div>
+
+
+<!-- *ngIf="userRole == admin" -->
+<div>
+  <h4> Moderators </h4>
+  <!-- <div *ngFor="let mod of moderators"> -->
+  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
+  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
+  <!-- <p> {{user.username}}</p> -->
+  <p> Username </p>
+  <button (click)="removeMod()"> Remove as Moderator </button>
 </div>

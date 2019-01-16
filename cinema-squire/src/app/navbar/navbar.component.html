@@ -29,7 +29,7 @@
       <button *ngIf="user" mat-menu-item (click)="logout()">
           <span>Logout</span>
         </button>
-      <button *ngIf="!user" mat-menu-item>
+      <button *ngIf="!user" mat-menu-item (click)="create.show()">
         <span>Create Account</span>
       </button>
       <button mat-menu-item [routerLink]="['profile']" [disabled]="!user">
