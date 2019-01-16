@@ -20,6 +20,9 @@ export class ReviewsComponent implements OnInit {
   constructor(private dataService: DataServiceService, private service: ApiClientService) { }
 
   submitReview(form: NgForm){
+    this.service.addMovie(this.movie.id, this.movie.title).subscribe((data) => {
+      console.log(data);
+    })
     let rating: string = form.value.rating;
     let review: string = form.value.reviewText;
     let userId: string = this.user.userid;
@@ -32,12 +35,9 @@ export class ReviewsComponent implements OnInit {
   ngOnInit() {
     this.service.searchMovieById(this.dataService.getMovieId()).subscribe((data) => {
       this.movie = data;
-    })
+    });
     this.user = this.dataService.getUser();
     this.reviews = this.service.getReviewsByMovieId(this.movie.id);
-    this.service.addMovie(this.movie.id, this.movie.title).subscribe((data) => {
-      console.log(data);
-    })
   }
 
 }

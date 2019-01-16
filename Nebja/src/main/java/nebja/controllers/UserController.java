@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -102,19 +103,19 @@ public class UserController {
 		
 		}
 		
-		@CrossOrigin(value="http://localhost:4200/")
+		@CrossOrigin(origins="http://localhost:4200")
 		@PostMapping (value = "/review")
 		public ResponseEntity<?> getReview(@RequestBody String rev) {
 			System.out.println(rev);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		@CrossOrigin(value="http://localhost:4200/")
-		@RequestMapping (value = "/review", method=RequestMethod.OPTIONS)
-		public ResponseEntity<?> getReview2(@RequestBody String rev) {
-			System.out.println(rev);
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
+//		@CrossOrigin(value="http://localhost:4200/")
+//		@RequestMapping (value = "/review", method=RequestMethod.OPTIONS)
+//		public ResponseEntity<?> getReview2(@RequestBody String rev) {
+//			System.out.println(rev);
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}
 		
 		
 

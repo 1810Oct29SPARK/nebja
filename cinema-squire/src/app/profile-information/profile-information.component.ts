@@ -24,6 +24,9 @@ export class ProfileInformationComponent implements OnInit {
   ngOnInit() {
     this.user = this.dataService.getUser();
     console.log(this.user);
+    this.service.getReviewsByUserId(this.user.userid).subscribe((data) => {
+      console.log(data);
+    })
   }
 
 }

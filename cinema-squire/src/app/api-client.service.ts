@@ -25,7 +25,15 @@ export class ApiClientService {
   }
 
   getReviewsByMovieId(id): Observable<any> {
-    return this.http.get('http://localhost:8080/Nebja/'); 
+    return this.http.post('http://localhost:8082/Nebja/login/sent', {
+      "movieId": id
+    }); 
+  }
+
+  getReviewsByUserId(id): Observable<any> {
+    return this.http.post('http://localhost:8082/Nebja/login/sent', {
+      "userId": id
+    });
   }
 
   submitReview(score, review, userId): Observable<any>{
