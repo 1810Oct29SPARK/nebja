@@ -17,9 +17,10 @@ export class ApiClientService {
     });
   }
 
-  addMovie(id, title) {
-    this.http.post('http://localhost:8080/Nebja/', {
-
+  addMovie(id, title): Observable<any> {
+   return this.http.post('http://localhost:8080/Nebja/', {
+      "movieId": id,
+      "title": title
     });
   }
 

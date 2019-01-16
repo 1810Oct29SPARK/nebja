@@ -35,6 +35,9 @@ export class ReviewsComponent implements OnInit {
     })
     this.user = this.dataService.getUser();
     this.reviews = this.service.getReviewsByMovieId(this.movie.id);
+    this.service.addMovie(this.movie.id, this.movie.title).subscribe((data) => {
+      console.log(data);
+    })
   }
 
 }
