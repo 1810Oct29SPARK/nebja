@@ -62,11 +62,22 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
 			Review r = (Review) s.get(Review.class, id);
-			Query query = s.createQuery("from Review where movieid = :id").setParameter("id", id);
+			Query query = s.createQuery("from Review where userid = :id").setParameter("id", id);
 			List list = query.list();
 			Review review = (Review) query.iterate();
 			return review;
+		}
 	}
+		
+		public Review getUserReviewsbyMovieid(int id) {
+			try(Session s = sf.getCurrentSession()){
+				Transaction tx = s.beginTransaction();
+				Review r = (Review) s.get(Review.class, id);
+				Query query = s.createQuery("from Review where movieid = :id").setParameter("id", id);
+				List list = query.list();
+				Review review = (Review) query.iterate();
+				return review;
+		}
 		
 
 }

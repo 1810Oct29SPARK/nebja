@@ -29,12 +29,12 @@ public Review(String moviereview) {
 	this.moviereview = moviereview;
 }
 
-public Review(String moviereview,int reviewscore,int moviesid) {
+public Review(String moviereview,int reviewscore,int moviesid,int usersid) {
 	super();
 	this.reviewscore = reviewscore;
 	this.moviereview = moviereview;
 	this.moviesid = moviesid;
-	
+	this.usersid = usersid;
 }
 
 public Review() {
@@ -56,6 +56,8 @@ public int moviesid;
 @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private User userid;
+@Column(name="USERS_ID")
+public int usersid;
 public int getReviewid() {
 	return reviewid;
 }

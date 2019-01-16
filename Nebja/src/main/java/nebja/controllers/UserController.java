@@ -114,6 +114,7 @@ public class UserController {
 		@RequestMapping (value = "/newmovie", method = RequestMethod.POST, consumes = "application/json")
 		public ResponseEntity<?> addMovie(@RequestBody String movie, HttpSession s) {
 			JSONObject js = new JSONObject(movie);
+			
 			int movid = js.getInt("movieId");
 			theid =movid;
 			String title = js.getString("title");
@@ -126,16 +127,30 @@ public class UserController {
 		@CrossOrigin(value="http://localhost:4200")
 		@RequestMapping (value = "/review", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> getReview(@RequestBody String rev, HttpSession s) {
+			System.out.println(rev);
 			JSONObject js = new JSONObject(rev);
 			int score = js.getInt("score");
 			String revi =js.getString("review");
-			
-			Review review = new Review(revi,score,theid);
+			int usersid = js.getInt("userId");
+			Review review = new Review(revi,score,theid,usersid);
 			reviewService.createUserReview(review);
 			return new ResponseEntity<>(review,HttpStatus.OK);
 		}
 		
-		
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/userreview", method = RequestMethod.POST, consumes= "application/json")
+		public ResponseEntity<?> getReviewByUserID(@RequestBody String rev, HttpSession s) {
+			System.out.println(rev);
+			return new ResponseEntity<>(HttpStatus.OK);
 
+
+}
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/moviereview", method = RequestMethod.POST, consumes= "application/json")
+		public ResponseEntity<?> getReviewByMovie(@RequestBody String rev, HttpSession s) {
+			System.out.println(rev);
+			return new ResponseEntity<>(HttpStatus.OK);
+
+		}
 }
 

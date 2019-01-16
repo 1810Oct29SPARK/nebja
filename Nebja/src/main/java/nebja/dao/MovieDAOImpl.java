@@ -65,7 +65,7 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 	public void addMovie(Movie movie) {
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			s.save(movie);
+			s.saveOrUpdate(movie);
 			tx.commit();
 			s.close();
 			
