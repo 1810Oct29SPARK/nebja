@@ -11,7 +11,7 @@ export class ApiClientService {
 
 
   login(f, e): Observable<any> {
-    return this.http.post('http://localhost:8080/Nebja/login/sent', {
+    return this.http.post('http://localhost:8082/Nebja/login/sent', {
       "username": f,
       "password": e
     });
@@ -28,7 +28,7 @@ export class ApiClientService {
   }
 
   submitReview(score, review, userId): Observable<any>{
-    return this.http.post('http://localhost:8080/Nebja/user/review', {
+    return this.http.post('http://localhost:8082/Nebja/user/review', {
       "score": score,
       "review": review,
       "userId": userId

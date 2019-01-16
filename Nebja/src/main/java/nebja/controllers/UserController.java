@@ -109,6 +109,14 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
+		@CrossOrigin(value="http://localhost:4200/")
+		@RequestMapping (value = "/review", method=RequestMethod.OPTIONS)
+		public ResponseEntity<?> getReview2(@RequestBody String rev) {
+			System.out.println(rev);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		
 
 }
 

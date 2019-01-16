@@ -23,7 +23,9 @@ export class ReviewsComponent implements OnInit {
     let rating: string = form.value.rating;
     let review: string = form.value.reviewText;
     let userId: string = this.user.userid;
-    console.log(this.service.submitReview(rating, review, userId));
+    this.service.submitReview(rating, review, userId).subscribe((data) => {
+      console.log(data);
+    })
     this.reviews = this.service.getReviewsByMovieId(this.movie.id);
   }
 
