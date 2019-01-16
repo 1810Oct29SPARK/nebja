@@ -15,7 +15,18 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nebja.beans.User;
 import nebja.util.NebjaUtil;
@@ -187,6 +198,19 @@ public void updateUserRole(String userrole, int id) {
 		}
 			
 		}
+	
+	
+}
+
+public void deleteUser(int id) {
+	try(Session s = sf.getCurrentSession()){
+		Transaction tx = s.beginTransaction();
+		User u = (User) s.get(User.class, id);
+		s.delete(u);
+		tx.commit();
+		s.close();
 }
 }
+}
+
 

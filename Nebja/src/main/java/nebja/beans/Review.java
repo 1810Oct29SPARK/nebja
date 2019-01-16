@@ -24,6 +24,10 @@ public Review(String moviereview, int reviewscore) {
 		this.moviereview = moviereview;
 	}
 
+public Review(String moviereview) {
+	this.moviereview = moviereview;
+}
+
 public Review() {
 }
 @Id
@@ -37,7 +41,7 @@ private String moviereview;
 private int reviewscore;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "MOVIE_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
-private Movie movie;
+private Movie movieid;
 public int getReviewid() {
 	return reviewid;
 }
