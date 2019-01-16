@@ -16,7 +16,7 @@
       <h6>{{ movie.overview }}</h6>
       <br>
       <button mat-raised-button class="btn btn-primary" (click)="someFunction(movie.id)" [routerLink]="['reviews']">Leave A Review</button>
-      <button mat-raised-button class="btn btn-primary">Add to Watchlist</button>
+      <button mat-raised-button class="btn btn-primary" type="submit" (click)="addToWatchList(movie.)">Add to Watchlist</button>
     </div>
   </div>
 </div>

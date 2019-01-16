@@ -1,10 +1,15 @@
 package nebja.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,10 +28,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+import nebja.beans.Movie;
 import nebja.beans.User;
+import nebja.dao.MovieDAO;
+import nebja.dao.MovieDAOImpl;
 import nebja.dao.UserDAO;
 import nebja.dao.UserDAOImpl;
 import nebja.service.LoginService;
+import nebja.service.MovieService;
 import nebja.service.MovieUserService;
 
 @Controller
@@ -39,6 +51,10 @@ public class HomeController {
 	@Autowired
 	private MovieUserService movieUserService;
 	UserDAO ud = new UserDAOImpl();
+	
+	@Autowired
+	private MovieService movieService;
+	MovieDAO md= new MovieDAOImpl();
 
 	@GetMapping(value = "/login")
 	public String getStaticLoginPage() {
@@ -120,11 +136,36 @@ public class HomeController {
 		return new ResponseEntity<User>(theuser, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/newuser", method = RequestMethod.POST)
-	@ResponseBody
-	public void createUser(@RequestBody MultiValueMap<String, String> formParams) {
-		movieUserService.createUser(new User(formParams.getFirst("Username"), formParams.getFirst("Password"),
-				formParams.getFirst("Profile")));
+	@CrossOrigin(value="http://localhost:4200")
+    @RequestMapping (value = "/newuser", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<User> createUser(@RequestBody String user) throws JsonParseException, JsonMappingException, IOException{
+        JSONObject js = new JSONObject(user);
+        System.out.println(user);
+        String username = js.getString("Username");
+        String password = js.getString("Password");
+        String Profile = js.getString("Profile");
+        User thing = null;
+        movieUserService.createUser(thing = new User(username,password,Profile));
+        
+        return new ResponseEntity<>(thing,HttpStatus.OK);
+    
+    }
+	
+	@RequestMapping(value = "/addToWatchlist", method = RequestMethod.POST, consumes ="application/json")
+	@ResponseBody 
+	public ResponseEntity<Movie> addToWatchlist(@RequestBody String movieJson) throws JsonParseException, JsonMappingException, IOException{
+		 JSONObject js = new JSONObject(movieJson);
+		Movie newMovie = null;
+		System.out.println(movieJson);
+		byte[] photoArray= js.getString("Photo").getBytes(StandardCharsets.UTF_8);
+		String title=js.getString("Title");
+		System.out.println(title);
+		
+		String username=js.getString("Username");
+		movieService.createMovie(username, newMovie=new Movie(photoArray,title));
+		return new ResponseEntity<>(newMovie,HttpStatus.OK);
+	
+		
 
 	}
 

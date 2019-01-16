@@ -1,12 +1,16 @@
 package nebja.service;
 
 import java.sql.Blob;
+
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import nebja.beans.Movie;
 import nebja.dao.MovieDAO;
 import nebja.dao.MovieDAOImpl;
 
+@Service(value="movieService")
 public class MovieServiceImpl implements MovieService {
 
 	MovieDAO md = new MovieDAOImpl();
@@ -34,5 +38,13 @@ public class MovieServiceImpl implements MovieService {
 		// TODO Auto-generated method stub
 		return md.getMovieTitle(movieid);
 	}
+	
+	@Override
+	public void createMovie(String username,Movie movie) {
+		// TODO Auto-generated method stub
+		md.createMovie(username, movie);
+	}
+	
+	
 
 }

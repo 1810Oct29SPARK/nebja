@@ -12,4 +12,5 @@ public interface MovieDAO {
 	public double getMovieScore(int movieid);
 	public Blob getMoviePoster(int movieid);
 	public String getMovieTitle(int movieid);
+	public void createMovie(String username,Movie movie);
 }

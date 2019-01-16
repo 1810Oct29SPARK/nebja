@@ -63,10 +63,11 @@ private Comment comment;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "REVIEW_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private Review review;
-@ManyToMany(cascade = CascadeType.ALL)
+@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 @JoinTable(name = "MOVIEUSER_MOVIE", joinColumns = { @JoinColumn(name = "USER_ID")} ,inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID")})
 private List<Movie> movies;
-private List<Movie> getMovies() {
+
+public List<Movie> getMovies() {
 	return movies;
 }
 

@@ -9,11 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import nebja.beans.Movie;
+import nebja.beans.User;
 import nebja.util.NebjaUtil;
 
 public class MovieDAOImpl implements MovieDAO {
 static SessionFactory sf = NebjaUtil.getSessionFactory();
-
+private UserDAOImpl ud;
 
 /**
  * It gets all movies in our movie database
@@ -61,5 +62,34 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 		}
 		
 	}
-
+@Override
+public void createMovie(String username,Movie movie) {
+	try(Session s = sf.getCurrentSession()){
+		List<Movie> movies = new ArrayList<>();	
+		User user=ud.getUserByUsername(username);
+		Transaction tx = s.beginTransaction();
+		boolean notInDatabase=true;
+		movies = s.createQuery("from Movie").getResultList();
+		for(Movie movieInList: movies)
+		{
+			if(movie.getTitle().equals(movieInList.getTitle()))
+			{
+				user.getMovies().add(movie);
+				s.merge(user);
+				notInDatabase=false;
+				break;
+			}
+		}
+		if(notInDatabase==true)
+		{
+		user.getMovies().add(movie);
+		s.merge(user);
+		s.persist(movie);
+		tx.commit();
+		s.close();
+		}
+	}
+	
+}
+	
 }

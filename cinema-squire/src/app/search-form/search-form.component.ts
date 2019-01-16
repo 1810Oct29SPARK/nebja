@@ -31,6 +31,11 @@ export class SearchFormComponent implements OnInit {
     })
   }
 
+  addToWatchList(id)
+  {
+    
+  }
+
   ngOnInit() {
   }
 

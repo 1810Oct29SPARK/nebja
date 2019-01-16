@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="MOVIE")
 public class Movie {
-public Movie(int movieid, File moviephoto, String title, double avgscore) {
+public Movie(int movieid, byte[] moviephoto, String title, double avgscore) {
 		super();
 		this.movieid = movieid;
 		this.moviephoto = moviephoto;
@@ -29,13 +29,23 @@ public Movie(int movieid, String title, double avgscore) {
 	this.title = title;
 	this.avgscore = avgscore;
 }
+
+public Movie(byte[] moviephoto, String title) {
+	super();
+	this.title = title;
+	this.moviephoto = moviephoto;
+}
+
+public Movie() {
+	
+}
 @Id
 @GeneratedValue(strategy= GenerationType.AUTO,generator="movieSequence")
 @SequenceGenerator(allocationSize=1, name="movieSequence", sequenceName= "SQ_MOVIE_PK")
 @Column(name="MOVIE_ID")
 private int movieid;
 @Column(name="MOVIE_PHOTO")
-private File moviephoto;
+private byte[] moviephoto;
 @Column(name="TITLE")
 private String title;
 @Column(name="AVG_SCORE")
@@ -46,10 +56,10 @@ public int getMovieid() {
 public void setMovieid(int movieid) {
 	this.movieid = movieid;
 }
-public File getMoviephoto() {
+public byte[] getMoviephoto() {
 	return moviephoto;
 }
-public void setMoviephoto(File moviephoto) {
+public void setMoviephoto(byte[] moviephoto) {
 	this.moviephoto = moviephoto;
 }
 public String getTitle() {
