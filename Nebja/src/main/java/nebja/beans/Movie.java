@@ -36,8 +36,7 @@ public Movie(int movieid, String title) {
 	this.movieid = movieid;
 	this.title = title;
 }
-@OneToMany(mappedBy="movieid")
-Private Set<Review> review;
+
 @Id
 @Column(name="MOVIE_ID")
 private int movieid;
