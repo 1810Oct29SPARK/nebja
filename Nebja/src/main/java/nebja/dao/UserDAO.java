@@ -3,7 +3,7 @@ package nebja.dao;
 import java.io.File;
 import java.util.List;
 
-import org.hibernate.Query;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nebja.beans.User;
 
@@ -17,4 +17,5 @@ public interface UserDAO {
 	public byte[] getPhoto(int id);
 	public User getUserByUsername(String username);
 	public void updateUserRole(String userrole, int id);
+	
 }
