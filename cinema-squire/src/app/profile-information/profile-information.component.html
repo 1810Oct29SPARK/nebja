@@ -52,9 +52,11 @@
           <!-- *NgIf="user.reviews"-->
           <!-- *NgFor="let review of reviews" -->
           <div *ngFor="let movie of movies; let i = index" class="user-review">
-            <h5 style="color:aliceblue">{{ movie.title }}</h5>
-            <mat-card><img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" height="50px"> {{reviews[i][1]}}
-            Score: {{reviews[i][2]}} <span class="fa fa-star checked"></span>  
+            <br>
+            <h2 style="color:aliceblue">{{ movie.title }}</h2>
+            <br>
+            <mat-card><img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" height="100px"> <h3>{{reviews[i][1]}}</h3>
+            <bar-rating [theme]="'stars'" [(ngModel)]="reviews[i][2]" name="score" [max]="5" required></bar-rating>
             </mat-card>
           </div>
           <br>
