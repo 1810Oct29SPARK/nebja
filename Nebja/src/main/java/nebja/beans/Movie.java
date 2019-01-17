@@ -37,11 +37,27 @@ public Movie(int movieid, String title) {
 	this.title = title;
 }
 
+public Movie() {
+	
+}
+
 @Id
+@GeneratedValue(strategy= GenerationType.AUTO,generator="movieSequence")
+@SequenceGenerator(allocationSize=1, name="movieSequence", sequenceName= "SQ_MOVIE_PK")
 @Column(name="MOVIE_ID")
-private int movieid;
+private Integer movieid;
+@Column(name="API_ID")
+private Integer apiid;
 @Column(name="MOVIE_PHOTO")
 private File moviephoto;
+public Integer getApiid() {
+	return apiid;
+}
+
+public void setApiid(int apiid) {
+	this.apiid = apiid;
+}
+
 @Column(name="TITLE")
 private String title;
 @Column(name="AVG_SCORE")

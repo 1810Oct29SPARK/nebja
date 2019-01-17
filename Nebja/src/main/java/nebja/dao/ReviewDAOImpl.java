@@ -3,6 +3,8 @@ package nebja.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,25 +60,42 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 			s.close();
 		}
 	}
-	public Review getUserReviews(int id) {
+	public List getUserReviews(int id) {
+		Review rev = new Review();
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
-			Review r = (Review) s.get(Review.class, id);
-			Query query = s.createQuery("from Review where userid = :id").setParameter("id", id);
-			List list = query.list();
-			Review review = (Review) query.iterate();
-			return review;
+			Query query = s.createSQLQuery("select * From review WHERE users_id = :usersid").setParameter("usersid", id);
+			List list = query.getResultList();
+			System.out.println(list);
+			/*for ( Object row: list) {
+				rev = new Review();
+				String parse = row.toString();
+				rev.setMoviereview(parse);
+				
+				return rev;
+			}*/
+			tx.commit();
+			s.close();
+			return list;
+			
+			
+			
 		}
+	
 	}
+	
 		
-		public Review getUserReviewsbyMovieid(int id) {
+		public List getUserReviewsbyMovieid(int id) {
+			Review rev = new Review();
 			try(Session s = sf.getCurrentSession()){
 				Transaction tx = s.beginTransaction();
 				Review r = (Review) s.get(Review.class, id);
-				Query query = s.createQuery("from Review where movieid = :id").setParameter("id", id);
-				List list = query.list();
-				Review review = (Review) query.iterate();
-				return review;
+				Query query = s.createSQLQuery("select * From review WHERE movie_ids = :moviesid").setParameter("moviesid", id);
+				List list =  query.list();
+				
+				tx.commit();
+				s.close();
+				return list;
 		}
 		
 

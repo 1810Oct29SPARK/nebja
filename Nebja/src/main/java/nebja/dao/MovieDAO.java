@@ -13,4 +13,6 @@ public interface MovieDAO {
 	public Blob getMoviePoster(int movieid);
 	public String getMovieTitle(int movieid);
 	public void addMovie(Movie movie);
+	public void addMovieWatch(int id, int anotherid);
+	public void createMovie(String username,Movie movie);
 }

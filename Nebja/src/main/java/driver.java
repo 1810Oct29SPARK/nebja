@@ -15,10 +15,10 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 		UserDAO u = new UserDAOImpl();
 		ReviewDAO r = new ReviewDAOImpl();
 		MovieDAO m = new MovieDAOImpl();
-		m.addMovie(new Movie(69,"Dirty Butt Stuff The Movie"));
+		//m.addMovie(new Movie(69,"Dirty Butt Stuff The Movie"));
 		//	String imageURL= "C:\\Users\\dukem\\Documents\\Blackops.jpg";
-		
-		
+		System.out.println(r.getUserReviewsbyMovieid(8922));
+		//System.out.println(r.getUserReviewsbyMovieid(8922));
 		//u.getPhoto(21);
 		//ReviewDAO r = new ReviewDAOImpl()
 	//r.createUserReview(new Review("Dude,Where's My Car was friggin hilarious!",8));

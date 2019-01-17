@@ -17,6 +17,6 @@ public interface MovieUserService {
 		public void updateProfilePhoto(File photo, int id);
 		public byte[] getPhoto(int id);
 		public User getUserByUsername(String username);
-	
-
+		public void deleteUser(int id);
+		public void updateUserRole(String userrole, int id);
 }

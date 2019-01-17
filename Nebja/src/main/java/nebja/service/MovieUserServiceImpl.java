@@ -65,4 +65,18 @@ public class MovieUserServiceImpl implements MovieUserService {
 		return md.getUserByUsername(username);
 	}
 
+	@Override
+	public void deleteUser(int id) {
+		md.deleteUser(id);
+		
+	}
+
+	@Override
+	public void updateUserRole(String userrole, int id) {
+		md.updateUserRole(userrole, id);
+		
+	}
+	
+	
+
 }

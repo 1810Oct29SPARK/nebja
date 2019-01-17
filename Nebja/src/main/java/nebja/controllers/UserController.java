@@ -1,12 +1,12 @@
 package nebja.controllers;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -110,7 +111,7 @@ public class UserController {
 			return new ResponseEntity<>(thing,HttpStatus.OK);
 		
 		}
-
+		
 		@CrossOrigin(value="http://localhost:4200")
 		@RequestMapping (value = "/newmovie", method = RequestMethod.POST, consumes = "application/json")
 		public ResponseEntity<?> addMovie(@RequestBody String movie, HttpSession s) {
@@ -141,17 +142,72 @@ public class UserController {
 		@CrossOrigin(value="http://localhost:4200")
 		@RequestMapping (value = "/userreview", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> getReviewByUserID(@RequestBody String rev, HttpSession s) {
-			System.out.println(rev);
-			return new ResponseEntity<>(HttpStatus.OK);
+			JSONObject js = new JSONObject(rev);
+			int id = js.getInt("userId");
+			System.out.println(id);
+			
+			return new ResponseEntity<>(reviewService.getUserReviews(id),HttpStatus.OK);
 
 
 }
 		@CrossOrigin(value="http://localhost:4200")
 		@RequestMapping (value = "/moviereview", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> getReviewByMovie(@RequestBody String rev, HttpSession s) {
-			System.out.println(rev);
-			return new ResponseEntity<>(HttpStatus.OK);
+			JSONObject js = new JSONObject(rev);
+			int id = js.getInt("movieId");
+			System.out.println(id);
+			return new ResponseEntity<>(reviewService.getUserReviewsbyMovieid(id),HttpStatus.OK);
+			
 
 		}
-}
+		
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/watchlist", method = RequestMethod.POST, consumes= "application/json")
+		public ResponseEntity<?> getMovieWatchlist(@RequestBody String rev, HttpSession s) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		@RequestMapping(value = "/addToWatchlist", method = RequestMethod.POST, consumes ="application/json")
+		@ResponseBody 
+		public ResponseEntity<Movie> addToWatchlist(@RequestBody String movieJson) throws JsonParseException, JsonMappingException, IOException{
+			 JSONObject js = new JSONObject(movieJson);
+			System.out.println(movieJson);
+			String title=js.getString("Title");
+			int movieApiId=js.getInt("Id");
+			System.out.println(movieApiId);
+			System.out.println(title);
+			Movie newMovie = null;
+			String username=js.getString("Username");
+			movieService.addToWatchlist(username, newMovie=new Movie(movieApiId,title));
+			return new ResponseEntity<>(newMovie,HttpStatus.OK);
+		
+			
 
+		}
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/deleteuser", method = RequestMethod.PUT, consumes= "application/json")
+		public ResponseEntity<?> deleteUserById(@RequestBody String rev, HttpSession s) {
+			JSONObject js = new JSONObject(rev);
+			int id = js.getInt("Id");
+			movieUserService.deleteUser(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+		
+}
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/updateuser", method = RequestMethod.PUT, consumes= "application/json")
+		public ResponseEntity<?> updateUserRole(@RequestBody String rev, HttpSession s) {
+			JSONObject js = new JSONObject(rev);
+			int id = js.getInt("Id");
+			String role = "MODERATOR";
+			movieUserService.updateUserRole(role,id);
+			return new ResponseEntity<>(HttpStatus.OK);
+}
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/updateuser", method = RequestMethod.PUT, consumes= "application/json")
+		public ResponseEntity<?> updateUserPhoto(@RequestBody String rev, HttpSession s) {
+			System.out.println(rev);
+			JSONObject js = new JSONObject(rev);
+			return new ResponseEntity<>(HttpStatus.OK);
+}
+}

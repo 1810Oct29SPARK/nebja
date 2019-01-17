@@ -29,7 +29,7 @@ public Review(String moviereview) {
 	this.moviereview = moviereview;
 }
 
-public Review(String moviereview,int reviewscore,int moviesid,int usersid) {
+public Review(String moviereview,Integer reviewscore,Integer moviesid,Integer usersid) {
 	super();
 	this.reviewscore = reviewscore;
 	this.moviereview = moviereview;
@@ -39,29 +39,30 @@ public Review(String moviereview,int reviewscore,int moviesid,int usersid) {
 
 public Review() {
 }
+
 @Id
 @GeneratedValue(strategy= GenerationType.AUTO,generator="reviewSequence")
 @SequenceGenerator(allocationSize=1, name="reviewSequence", sequenceName= "SQ_REVIEW_PK")
 @Column(name="REVIEW_ID")
-private int reviewid;
+private Integer reviewid;
 @Column(name="MOVIE_REVIEW")
 private String moviereview;
 @Column(name="REVIEW_SCORE")
-private int reviewscore;
+private Integer reviewscore;
 @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinColumn(name = "MOVIE_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private Movie movieid;
 @Column(name="MOVIE_IDS")
-public int moviesid;
+public Integer moviesid;
 @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private User userid;
 @Column(name="USERS_ID")
-public int usersid;
-public int getReviewid() {
+public Integer usersid;
+public Integer getReviewid() {
 	return reviewid;
 }
-public void setReviewid(int reviewid) {
+public void setReviewid(Integer reviewid) {
 	this.reviewid = reviewid;
 }
 public String getMoviereview() {
@@ -105,10 +106,10 @@ public String toString() {
 	return "Review [reviewid=" + reviewid + ", moviereview=" + moviereview + ", reviewscore=" + reviewscore + "]";
 }
 
-public int getReviewscore() {
+public Integer getReviewscore() {
 	return reviewscore;
 }
-public void setReviewscore(int reviewscore) {
+public void setReviewscore(Integer reviewscore) {
 	this.reviewscore = reviewscore;
 };
 
