@@ -40,7 +40,9 @@
   </div>
   <br>
   <br>
-  <div id="review-section" class="col-md-12">
+  <button class="btn btn-primary" (click)="reviewToggle()">My Reviews</button>
+  <button class="btn btn-primary" (click)="watchlistToggle()">My Watchlist</button>
+  <div *ngIf="rToggle" id="review-section" class="col-md-12">
     <div>
       <h2 style="color:aliceblue"> My Reviews </h2>
     </div>
@@ -67,6 +69,31 @@
     </div>
   </div>
   <br>
+  <div *ngIf="wToggle">
+  <div *ngIf="watchlistItems" class="row">
+      <div *ngFor="let wItem of watchlistItems; let i = index" class="col-md-4 mx-auto my-5">
+        <mdb-card dark="true">
+          <div class="view overlay waves-light" mdbWavesEffect>
+            <mdb-card-img *ngIf="wItem.poster_path" src="https://image.tmdb.org/t/p/w500{{ wItem.poster_path }}"></mdb-card-img>
+            <mdb-card-img *ngIf="!wItem.poster_path" src="https://popcornusa.s3.amazonaws.com/placeholder-movieimage.png"></mdb-card-img>
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+    
+          <mdb-card-body class="elegant-color white-text">
+    
+            <mdb-card-title>
+              <h4>{{wItem.title}}</h4>
+            </mdb-card-title>
+    
+            <hr class="hr-light">
+            <button mat-raised-button class="btn btn-danger" (click)="deleteFromWatchlist(watchlist[i].watchid)">Remove from List</button>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
   <!-- <div id="watchlist-section" class="col-md-12">
     <div id="watchlist-title">
       <h2>My Watchlist <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </h2>

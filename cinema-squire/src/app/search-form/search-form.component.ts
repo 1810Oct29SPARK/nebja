@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiClientService } from '../api-client.service';
 import { NgForm } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
+import { ModalDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-search-form',
@@ -16,6 +17,16 @@ export class SearchFormComponent implements OnInit {
 
   constructor(private service: ApiClientService, private dataService: DataServiceService) { }
 
+  @ViewChild('demoBasic') demoBasic: ModalDirective;
+
+  showAndHideModal() {
+    this.demoBasic.show();
+
+    setTimeout(() => {
+      this.demoBasic.hide();
+    }, 1000);
+  }
+
   searchMovies(movie: NgForm) {
     this.service.searchMovie(movie.value.movie).subscribe((data) => {
       this.movieResults = data;
@@ -26,6 +37,7 @@ export class SearchFormComponent implements OnInit {
   addToWatchlist(id) {
     this.service.addToWatchlist(id, this.user.userid).subscribe((data) => {
       console.log(data);
+      this.showAndHideModal();
     })
   }
 

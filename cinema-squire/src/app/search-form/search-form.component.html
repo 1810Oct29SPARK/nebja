@@ -39,10 +39,19 @@
 
         <hr class="hr-light">
         <button mat-raised-button [hidden]="user" class="btn btn-primary" (click)="getMovie(movie.id)" [routerLink]="['/movieInfo']">Movie Info</button>
-        <button mat-raised-button [hidden]="!user" class="btn btn-primary" (click)="getMovie(movie.id)" [routerLink]="['/reviews']">Leave A Review</button>
-        <br>
+        <button mat-raised-button [hidden]="!user" class="btn-sm btn-outline-primary" (click)="getMovie(movie.id)" [routerLink]="['/reviews']">Leave A Review</button>
         <button mat-raised-button [hidden]="!user" class="btn btn-primary" (click)="addToWatchlist(movie.id)">Add to Watchlist</button>
       </mdb-card-body>
     </mdb-card>
   </div>
+</div>
+
+<div mdbModal #demoBasic="mdbModal" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="background-color:#00FF7F">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">SUCCESS!</h4>
+            </div>
+        </div>
+    </div>
 </div>

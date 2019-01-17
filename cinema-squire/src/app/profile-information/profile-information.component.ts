@@ -15,9 +15,27 @@ export class ProfileInformationComponent implements OnInit {
   constructor(private dataService: DataServiceService, private router: Router, private service: ApiClientService) { }
 
   user: any;
+  watchlistItems: any = [];
+  watchlist: any;
   selectedFile: File;
   reviews: any;
   movies: any = [];
+  rToggle: boolean = false;
+  wToggle: boolean = false;
+
+  reviewToggle(){
+    this.rToggle = !this.rToggle;
+  }
+
+  watchlistToggle() {
+    this.wToggle = !this.wToggle;
+  }
+
+  deleteFromWatchlist(id) {
+    this.service.deleteFromWatchlist(id).subscribe((data) => {
+      console.log(data);
+    });
+  }
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
@@ -49,6 +67,13 @@ export class ProfileInformationComponent implements OnInit {
 
     });
     this.service.getWatchlist(this.user.userid).subscribe((data) => {
+      this.watchlist = data;
+      for (let i = 0; i < this.watchlist.length; i++) {
+        this.service.searchMovieById(this.watchlist[i].movieids).subscribe((response) => {
+          this.watchlistItems.push(response);
+          console.log(this.watchlistItems);
+        });
+      }
       console.log(data);
     })
   }

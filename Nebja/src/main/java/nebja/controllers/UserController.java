@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Decoder.Binary;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,6 +139,7 @@ public class UserController {
 			int score = js.getInt("score");
 			String revi =js.getString("review");
 			int usersid = js.getInt("userId");
+			int theid = js.getInt("movieId");
 			Review review = new Review(revi,score,theid,usersid);
 			reviewService.createUserReview(review);
 			return new ResponseEntity<>(review,HttpStatus.OK);
@@ -168,7 +168,7 @@ public class UserController {
 		}
 		
 		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/watchlist", method = RequestMethod.GET, consumes= "application/json")
+		@RequestMapping (value = "/watchlist", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> getMovieWatchlist(@RequestBody String rev, HttpSession s) {
 			JSONObject js = new JSONObject(rev);
 			int userid = js.getInt("userId");
