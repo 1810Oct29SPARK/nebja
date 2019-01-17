@@ -24,7 +24,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   addToWatchlist(id) {
-    this.service.addToWatchlist(id, this.user.userid).subscribe((data) => {
+    this.service.addToWatchlist(id, this.dataService.getUserId()).subscribe((data) => {
       console.log(data);
     })
   }
