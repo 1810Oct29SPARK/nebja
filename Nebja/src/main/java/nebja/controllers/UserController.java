@@ -138,8 +138,8 @@ public class UserController {
 			JSONObject js = new JSONObject(rev);
 			int score = js.getInt("score");
 			String revi =js.getString("review");
-			int usersid = js.getInt("userId");
 			int theid = js.getInt("movieId");
+			int usersid = js.getInt("userId");
 			Review review = new Review(revi,score,theid,usersid);
 			reviewService.createUserReview(review);
 			return new ResponseEntity<>(review,HttpStatus.OK);
