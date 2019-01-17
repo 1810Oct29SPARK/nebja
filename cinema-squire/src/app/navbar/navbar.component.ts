@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     console.log(data);
     if (data != null) {
       this.dataService.setUser(data);
-      this.router.navigateByUrl('/profile');
+      this.router.navigateByUrl('/redirect');
     } else {
       alert("invalid credentials");
     }
@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
 
  logout() {
    this.dataService.setUser(null);
-   this.router.navigateByUrl('/');
+   this.router.navigateByUrl('/redirect');
  }
 
  

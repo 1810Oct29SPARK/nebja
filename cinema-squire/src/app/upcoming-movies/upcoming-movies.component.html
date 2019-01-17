@@ -1,4 +1,4 @@
-<h2 style="color:aliceblue">Upcoming Movies</h2>
+<h2 style="color:aliceblue">Trending Movies</h2>
 <br>
 
 <div class="row">
@@ -23,6 +23,7 @@
           <mdb-card-text class="white-text">
             Release Date: {{movie.release_date}}
           </mdb-card-text>
+          <button mat-raised-button [hidden]="user" class="btn btn-primary" (click)="getMovie(movie.id)" [routerLink]="['/movieInfo']">Movie Info</button>
         </mdb-card-body>
       </mdb-card>
     </div>

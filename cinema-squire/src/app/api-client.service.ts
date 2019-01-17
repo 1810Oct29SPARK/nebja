@@ -24,6 +24,13 @@ export class ApiClientService {
     });
   }
 
+  addToWatchlist(userId, movieId): Observable<any> {
+    return this.http.post('', {
+      "userId": userId,
+      "movieId": movieId
+    });
+  }
+
   getReviewsByMovieId(id): Observable<any> {
     return this.http.post('http://localhost:8082/Nebja/login/sent', {
       "movieId": id
@@ -56,9 +63,10 @@ export class ApiClientService {
     return this.http.get('http://localhost:8080/Nebja/home/')
   }
   
-  uploadPhoto(photo) {
+  uploadPhoto(photo, id): Observable<any> {
     return this.http.post('', {
-      "picture": photo
+      "picture": photo,
+      "userId": id
     });
   }
 

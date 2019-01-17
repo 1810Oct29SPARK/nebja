@@ -12,8 +12,8 @@
               <h4 style="color:aliceblue">{{movie.tagline}}</h4>
               <ul class="list-group">
                   <li class="list-group-item"><strong>Release Date: {{movie.release_date}}</strong></li>
-                  <li class="list-group-item"><strong>Budget: ${{movie.budget}}</strong></li>
-                  <li class="list-group-item"><strong>Revenue: ${{movie.revenue}}</strong></li>
+                  <li *ngIf="movie.budget" class="list-group-item"><strong>Budget: ${{movie.budget}}</strong></li>
+                  <li *ngIf="movie.revenue" class="list-group-item"><strong>Revenue: ${{movie.revenue}}</strong></li>
                   <li class="list-group-item"><strong>Runtime: {{movie.runtime}} mins</strong></li>
               </ul>
           </div>
@@ -34,6 +34,7 @@
   <div class="container">
       
   </div>
+  <div *ngIf="user">
   <h2>Leave A Review</h2>
   <form style="color:aliceblue" (ngSubmit)="submitReview(f)" #f="ngForm">
     <bar-rating [theme]="'stars'" name="rating" ngModel [max]="5" required></bar-rating>
@@ -43,4 +44,5 @@
     <br>
     <button type="submit" mat-raised-button>Submit Review</button>
   </form>
+  </div>
 </div>

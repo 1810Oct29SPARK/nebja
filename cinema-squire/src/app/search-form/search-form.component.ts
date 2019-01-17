@@ -10,8 +10,6 @@ import { DataServiceService } from '../data-service.service';
 })
 export class SearchFormComponent implements OnInit {
 
-  loaded = false;
-
   user: any;
 
   movieResults: any;
@@ -25,9 +23,14 @@ export class SearchFormComponent implements OnInit {
     })
   }
 
-  someFunction(id) {
+  addToWatchlist(id) {
+    this.service.addToWatchlist(id, this.user.userid).subscribe((data) => {
+      console.log(data);
+    })
+  }
+
+  getMovie(id) {
     this.dataService.setMovieId(id);
-    this.loaded = true;
     this.service.searchMovieById(id).subscribe((data) => {
       console.log(data);
     })

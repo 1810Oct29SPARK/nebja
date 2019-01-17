@@ -21,13 +21,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileInformationComponent } from './profile-information/profile-information.component';
 import { YoutubeTrailersComponent } from './youtube-trailers/youtube-trailers.component';
 import { HomeComponent } from './home/home.component';
-import { ModeratorComponent } from './moderator/moderator.component'
+import { ModeratorComponent } from './moderator/moderator.component';
+import { RedirectComponent } from './redirect/redirect.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'reviews', component: ReviewsComponent },
   { path: 'profile', component: ProfileInformationComponent},
-  { path: 'moderator', component: ModeratorComponent}
+  { path: 'moderator', component: ModeratorComponent},
+  { path: 'movieInfo', component: ReviewsComponent },
+  { path: 'redirect', component: RedirectComponent }
 ];
 
 @NgModule({
@@ -42,7 +45,8 @@ const routes: Routes = [
     ProfileInformationComponent,
     YoutubeTrailersComponent,
     HomeComponent,
-    ModeratorComponent
+    ModeratorComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     BarRatingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   providers: [ApiClientService, DataServiceService],
   bootstrap: [AppComponent]

@@ -1,42 +1,26 @@
 <mat-toolbar class="toolbar" color="primary">
 
   <mat-toolbar-row>
-    <a style="color:aliceblue" routerLink="/"><span>Cinema Squire</span></a>
+    <a routerLink="/"><img src="assets/logoCinemaSquire.PNG" height="50px" width="270px"></a>
     <span class="navSpacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon class="navIcon">menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span>Reviews</span>
-      </button>
-      <button mat-menu-item>
-        <span>Watch List</span>
-      </button>
-      <button mat-menu-item>
-        <span>Disable alerts</span>
-      </button>
-    </mat-menu>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu2">
+    <div class="well col-md-2 text-center">
+      <p *ngIf="!user">Welcome, Guest!</p>
+      <p *ngIf="user">Welcome, {{user.username}}!</p>
+    </div>
+    <button class="btn btn-success" *ngIf="!user" (click)="create.show()">Create Account</button>
+    <button class="btn btn-primary" *ngIf="!user" (click)="frame.show()" mdbWavesEffect>Login</button>
+    <button *ngIf="user" mat-icon-button [matMenuTriggerFor]="menu2">
       <mat-icon class="navIcon">person</mat-icon>
     </button>
     <mat-menu #menu2="matMenu">
-      <button *ngIf="!user" mat-menu-item type="button" mdbBtn rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-        mdbWavesEffect>
-        <span>Login</span>
-      </button>
       <button *ngIf="user" mat-menu-item (click)="logout()">
-          <span>Logout</span>
-        </button>
-      <button *ngIf="!user" mat-menu-item (click)="create.show()">
-        <span>Create Account</span>
+        <span>Logout</span>
       </button>
-      <button mat-menu-item [routerLink]="['profile']" [disabled]="!user">
+      <button mat-menu-item [routerLink]="['/profile']" [disabled]="!user">
         <span>View Profile</span>
       </button>
-      <button mat-menu-item [routerLink]="['moderator']">
-          <span>Admin/Moderator</span>
+      <button mat-menu-item [routerLink]="['/moderator']">
+        <span>Admin/Moderator</span>
       </button>
     </mat-menu>
 
@@ -56,11 +40,11 @@
       <div class="modal-body mx-3">
         <form (ngSubmit)="login(f)" #f="ngForm">
           <div class="md-form mb-5">
-              <input class="form-control" placeholder="Username" ngModel name="username" required>
+            <input class="form-control" placeholder="Username" ngModel name="username" required>
           </div>
 
           <div class="md-form mb-4">
-              <input type="password" class="form-control" placeholder="Password" ngModel name="password" required>
+            <input type="password" class="form-control" placeholder="Password" ngModel name="password" required>
           </div>
 
 
@@ -103,11 +87,11 @@
             <label for="aboutMe"> About Me </label>
             <textarea class="form-control rounded-0" id="aboutMe" rows="5" ngModel name="Profile"></textarea>
           </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" mdbBtn color="red" class="waves-light" mdbWavesEffect>Create Account</button>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" mdbBtn color="red" class="waves-light" mdbWavesEffect>Create Account</button>
+          </div>
+        </form>
       </div>
-      </form>
-    </div>
     </div>
   </div>
 </div>
