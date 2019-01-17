@@ -11,7 +11,7 @@ export class ApiClientService {
 
 
   login(f, e): Observable<any> {
-    return this.http.post('http://localhost:8082/Nebja/login/sent', {
+    return this.http.post('http://localhost:8082/Nebja/user/login', {
       "username": f,
       "password": e
     });
@@ -52,7 +52,7 @@ export class ApiClientService {
   }
 
   createAccount(user, pass, profileInfo): Observable<any> {
-    return this.http.post('http://localhost:8080/Nebja/home/newuser', {
+    return this.http.post('http://localhost:8082/Nebja/home/newuser', {
       "Username": user,
       "Password": pass,
       "Profile": profileInfo
@@ -64,7 +64,7 @@ export class ApiClientService {
   }
   
   uploadPhoto(photo, id): Observable<any> {
-    return this.http.post('', {
+    return this.http.post('http://localhost:8082/user/updateuser', {
       "picture": photo,
       "userId": id
     });

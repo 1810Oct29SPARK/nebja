@@ -14,10 +14,15 @@ export class ProfileInformationComponent implements OnInit {
   constructor(private dataService: DataServiceService, private router: Router, private service: ApiClientService) { }
 
   user: any;
+  
+  selectedFile: File;
 
-  uploadPhoto(f: NgForm) {
-    console.log(f);
-    this.service.uploadPhoto(f.value.picture, this.user.userid).subscribe((data) => {
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
+
+  uploadPhoto() {
+    this.service.uploadPhoto(this.selectedFile, this.user.userid).subscribe((data) => {
       console.log(data);
     })
   }

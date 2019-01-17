@@ -10,13 +10,13 @@
   <p>Role: {{ user.userRole }}</p>
   </div>
   <div style="overflow: hidden">
-  <form (ngSubmit)="uploadPhoto(f)" #f="ngForm">
     <h5>Upload a profile image</h5>
-    <input type="file" id="profileImage" ngModel name="picture" accept="image/jpeg">
-    <br>
-    <br>
-    <input type="submit">
-  </form>
+    <input 
+  style="display: none" 
+  type="file" (change)="onFileChanged($event)" 
+  #fileInput>
+<button class="btn btn-primary" (click)="fileInput.click()">Select File</button>
+<button class="btn btn-success" (click)="uploadPhoto()">Upload</button>
   <button style="float: left">admin picture override</button>
 </div>
 <div style="overflow: hidden"><h2 style="float: left">Profile Description</h2></div>
