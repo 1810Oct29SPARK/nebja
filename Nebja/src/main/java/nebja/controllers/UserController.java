@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Decoder.Binary;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -27,12 +29,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import nebja.beans.Movie;
 import nebja.beans.Review;
 import nebja.beans.User;
+import nebja.beans.Watchlist;
 import nebja.dao.UserDAO;
 import nebja.dao.UserDAOImpl;
 import nebja.service.LoginService;
 import nebja.service.MovieService;
 import nebja.service.MovieUserService;
 import nebja.service.ReviewService;
+import nebja.service.WatchService;
 @CrossOrigin
 @Controller
 @RequestMapping(value="/user")
@@ -48,6 +52,8 @@ public class UserController {
 	UserDAO ud = new UserDAOImpl();
 	@Autowired
 	private MovieService movieService;
+	@Autowired
+	private WatchService watchListService;
 
 	/*@RequestMapping(value="/login0")
 	public String getLogin() {
@@ -162,26 +168,18 @@ public class UserController {
 		}
 		
 		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/watchlist", method = RequestMethod.POST, consumes= "application/json")
+		@RequestMapping (value = "/watchlist", method = RequestMethod.GET, consumes= "application/json")
 		public ResponseEntity<?> getMovieWatchlist(@RequestBody String rev, HttpSession s) {
-			return new ResponseEntity<>(HttpStatus.OK);
+			JSONObject js = new JSONObject(rev);
+			int userid = js.getInt("userId");
+			return new ResponseEntity<>(watchListService.getWatchList(userid),HttpStatus.OK);
 		}
 		
 		@RequestMapping(value = "/addToWatchlist", method = RequestMethod.POST, consumes ="application/json")
 		@ResponseBody 
 		public ResponseEntity<Movie> addToWatchlist(@RequestBody String movieJson) throws JsonParseException, JsonMappingException, IOException{
 			 JSONObject js = new JSONObject(movieJson);
-			System.out.println(movieJson);
-			String title=js.getString("Title");
-			int movieApiId=js.getInt("Id");
-			System.out.println(movieApiId);
-			System.out.println(title);
-			Movie newMovie = null;
-			String username=js.getString("Username");
-			movieService.addToWatchlist(username, newMovie=new Movie(movieApiId,title));
-			return new ResponseEntity<>(newMovie,HttpStatus.OK);
-		
-			
+			 return new ResponseEntity<>(HttpStatus.OK);
 
 		}
 		@CrossOrigin(value="http://localhost:4200")
@@ -203,11 +201,20 @@ public class UserController {
 			movieUserService.updateUserRole(role,id);
 			return new ResponseEntity<>(HttpStatus.OK);
 }
-		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/updateuser", method = RequestMethod.PUT, consumes= "application/json")
-		public ResponseEntity<?> updateUserPhoto(@RequestBody String rev, HttpSession s) {
+		@CrossOrigin
+		@RequestMapping (value = "/updateuserphoto", method = RequestMethod.POST)
+		public String uploadFileHandler(@RequestBody MultipartFile rev, HttpSession s) {
 			System.out.println(rev);
-			JSONObject js = new JSONObject(rev);
-			return new ResponseEntity<>(HttpStatus.OK);
+		
+			return null;
 }
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/addwatchlist", method = RequestMethod.POST, consumes= "application/json")
+		public ResponseEntity<?> addWatchList(@RequestBody String rev, HttpSession s) {
+			JSONObject js = new JSONObject(rev);
+			int userid = js.getInt("userId");
+			int movieid = js.getInt("movieId");
+			Watchlist wl = watchListService.addWatchList(new Watchlist(movieid,userid));
+			return new ResponseEntity<>(wl,HttpStatus.OK);
+		}
 }

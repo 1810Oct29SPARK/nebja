@@ -15,6 +15,5 @@ public interface MovieService {
 		public Blob getMoviePoster(int movieid);
 		public String getMovieTitle(int movieid);
 		public void addMovie(Movie movie);
-		public void addToWatchlist(String username, Movie movie);
 
 }

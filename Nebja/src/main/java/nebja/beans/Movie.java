@@ -42,8 +42,6 @@ public Movie() {
 }
 
 @Id
-@GeneratedValue(strategy= GenerationType.AUTO,generator="movieSequence")
-@SequenceGenerator(allocationSize=1, name="movieSequence", sequenceName= "SQ_MOVIE_PK")
 @Column(name="MOVIE_ID")
 private Integer movieid;
 @Column(name="API_ID")

@@ -63,7 +63,7 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 		
 	}
 	
-	@SuppressWarnings("deprecation")
+/*	@SuppressWarnings("deprecation")
 	@Override
 	public void createMovie(String username,Movie movie) {
 	    try(Session s = sf.getCurrentSession()){
@@ -95,7 +95,7 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 	        s.close();
 	        }
 	    }
-	}
+	}*/
 	
 	public void addMovie(Movie movie) {
 		try(Session s = sf.getCurrentSession()){
