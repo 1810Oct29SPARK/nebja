@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ApiClientService } from '../api-client.service';
 import { DataServiceService } from '../data-service.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moderator',
@@ -11,53 +12,44 @@ import { DataServiceService } from '../data-service.service'
 export class ModeratorComponent implements OnInit {
   users: any;
   img: any;
+  searchUser: any;
+  user: any;
 
-  constructor(private dataService: DataServiceService, private service: ApiClientService) { }
+  constructor(private dataService: DataServiceService, private service: ApiClientService, private router: Router) { }
 
   userSearch(form: NgForm) {
     this.service.getAllUsers().subscribe((data) => {
       this.users = data;
-      console.log(data)
+      for (let i = 0; i < this.users.length; i++){
+        if (form.value.usernameInput == this.users[i].username) {
+          this.searchUser = this.users[i];
+        }
+      }
     })
   }
 
-  replaceUserImg() {
-      this.service.getAllUsers().subscribe((data) => {
-        this.users = data;
-        console.log(data)
-        // how do I know which user's image I'm replacing?
-      })
-    console.log("replaceUserImg() triggered!")
+
+
+  banUser(id) {
+    this.service.deleteUser(id).subscribe((data) => {
+    })
   }
 
-  banUser() {
-    console.log("banUser() triggered!")
-    let id;
-    this.service.deleteUser(id)
-    // how do I know which id I'm interacting with?
+  promoteToMod(id) {
+    this.service.changeUserRole(id, "MODERATOR").subscribe((data) => {
+    })
   }
 
-  removeReview(){
-    console.log("removeReview() triggered!")
-    this.service.deleteReview()
-  }
-
-  approveReview(){
-    console.log("approveReview() triggered!")
-  }
-
-  promoteToMod(role) {
-    console.log("promoteToMod() triggered!")
-    if (role == "User") {
-      this.dataService.setUserRole("Moderator");
-    }
-  }
-
-  removeMod(){
-    console.log("removeMod() triggered!")
+  removeMod(id){
+    this.service.changeUserRole(id, "USER").subscribe((data) => {
+    })
   }
 
   ngOnInit() {
+    this.user = this.dataService.getUser();
+    if (this.user == null) {
+      this.router.navigateByUrl('/');
+    }
   }
 
 }

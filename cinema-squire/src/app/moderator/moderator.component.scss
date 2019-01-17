@@ -8,13 +8,9 @@
 }
 
 p {
-    color: white;
+    color: black;
     margin-top: auto;
-    margin-bottom: auto;
-}
-
-button {
-    padding-right: 10px;
+    
 }
 
 h4 {
@@ -22,3 +18,46 @@ h4 {
 }
 
 
+.searchField {
+    width: 400px;
+}
+
+#user-search-result{
+    display: flex;
+    color: black;
+}
+
+#user-info {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    color:white;
+}
+
+#new-mods {
+    border: 1px solid hotpink;
+}
+
+table {
+    border: 2px solid white;
+    background-color: lightgray;
+    margin: auto;
+    
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+h5 {
+    color: black;
+    font-weight: bold;
+}
+
+.review {
+    border: 1px solid yellowgreen;
+    background-color: lightgray;
+}

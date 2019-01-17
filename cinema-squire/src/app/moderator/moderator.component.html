@@ -1,68 +1,39 @@
 <app-navbar></app-navbar>
 
-<form class="searchForm" (ngSubmit)="userSearch(search)" #search="ngForm">
-  <mat-form-field class="searchField">
-    <input matInput placeholder="Search for a user by username" ngModel name="usernameInput" required>
-  </mat-form-field>
-</form>
-
-<!-- *ngIf="data" -->
-<!-- empty profile image: 
-  http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg -->
-<!-- <div>
-<div *ngFor="let user of users"> -->
-<div id="user-display">
-  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
-  <!-- <p> {{user.username}}</p> -->
-  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
-  <p>Username</p>
-  <button (click)="replaceUserImg()"> Change Image </button>
-  <button (click)="banUser()"> Ban </button>
-</div>
-
-<!-- <div *ngFor="let review of reviews"> -->
-  <!-- <div *ngIf="-->
-<div id="reviews-display">
-  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
-  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
-  <!-- <p> {{user.username}}</p> -->
-  <p> Username </p>
-  <!-- <p> {{review.title}} </p> -->
-  <p> Review Title </p>
-  <!-- <p> {{review.text}} </p> -->
-  <p> This is where the review text will go </p>
-  <button (click)="removeReview()"> Remove </button>
-  <button (click)="approveReview()"> Approve </button>
-</div>
-
-
-<!-- </div>
-
-</div> -->
-
-
-<!-- *ngIf="userRole == admin" -->
-<div>
+<h2>Moderator View </h2>
+<hr>
+<div id="admod-search" class="col-md-12 text-center">
   <form class="searchForm" (ngSubmit)="userSearch(search)" #search="ngForm">
     <mat-form-field class="searchField">
-      <input matInput placeholder="Search for a user by username" ngModel name="searchForNewMod" required>
+      <input matInput placeholder="Search for a user by username" ngModel name="usernameInput">
     </mat-form-field>
+    <button mat-raised-button type="submit">Submit</button>
   </form>
-  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
-  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
-  <!-- <p> {{user.username}}</p> -->
-  <p> Username </p>
-  <button (click)="promoteToMod()"> Promote to Moderator </button>
 </div>
 
 
-<!-- *ngIf="userRole == admin" -->
-<div>
-  <h4> Moderators </h4>
-  <!-- <div *ngFor="let mod of moderators"> -->
-  <!-- <img [src]="'data:image/jpeg:base64,'+user.picture"> -->
-  <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:50px; height:75px;">
-  <!-- <p> {{user.username}}</p> -->
-  <p> Username </p>
-  <button (click)="removeMod()"> Remove as Moderator </button>
-</div>
+<table *ngIf="user.userRole == 'ADMIN'" class="col-md-12">
+  <tbody *ngIf="searchUser" class="text-center">
+    <tr>
+      <td> <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:75px; height:75px;">
+      </td>
+      <td> {{searchUser.username }} </td>
+      <td *ngIf="searchUser.userRole == 'USER'"> <button mat-raised-button (click)="promoteToMod(searchUser.userid)"> Promote to Moderator </button></td>
+      <td *ngIf="searchUser.userRole == 'MODERATOR'"> <button mat-raised-button (click)="removeMod(searchUser.userid)"> Remove as Moderator </button> </td>
+      <td> <button mat-raised-button (click)="banUser(searchUser.userid)"> Ban </button> </td>
+    </tr>
+
+  </tbody>
+</table>
+<br>
+<table *ngIf="user.userRole == 'MODERATOR'" class="col-md-6">
+    <tbody *ngIf="searchUser" class="text-center">
+      <tr>
+        <td> <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/empty-profile-picture-6.jpg" style="width:75px; height:75px;">
+        </td>
+        <td> {{searchUser.username}} </td>
+        <td> <button mat-raised-button (click)="banUser(searchUser.userid)"> Ban </button> </td>
+      </tr>
+  
+    </tbody>
+  </table>

@@ -33,7 +33,6 @@ export class ProfileInformationComponent implements OnInit {
 
   deleteFromWatchlist(id) {
     this.service.deleteFromWatchlist(id).subscribe((data) => {
-      console.log(data);
     });
   }
 
@@ -44,7 +43,6 @@ export class ProfileInformationComponent implements OnInit {
 
   uploadPhoto() {
     this.service.uploadPhoto(this.selectedFile, this.user.userid).subscribe((data) => {
-      console.log(data);
     })
   }
 
@@ -53,15 +51,11 @@ export class ProfileInformationComponent implements OnInit {
     if (this.user == null) {
       this.router.navigateByUrl('/');
     }
-    console.log(this.user);
     this.service.getReviewsByUserId(this.user.userid).subscribe((data) => {
-      console.log(data);
       this.reviews = data;
       for (let i = 0; i < this.reviews.length; i++) {
         this.service.searchMovieById(this.reviews[i][4]).subscribe((d) => {
-          console.log(d);
           this.movies.push(d);
-          console.log(this.movies);
         });
       }
 
@@ -71,10 +65,8 @@ export class ProfileInformationComponent implements OnInit {
       for (let i = 0; i < this.watchlist.length; i++) {
         this.service.searchMovieById(this.watchlist[i].movieids).subscribe((response) => {
           this.watchlistItems.push(response);
-          console.log(this.watchlistItems);
         });
       }
-      console.log(data);
     })
   }
 

@@ -183,7 +183,7 @@ public class UserController {
 
 		}
 		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/deleteuser", method = RequestMethod.PUT, consumes= "application/json")
+		@RequestMapping (value = "/deleteuser", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> deleteUserById(@RequestBody String rev, HttpSession s) {
 			JSONObject js = new JSONObject(rev);
 			int id = js.getInt("Id");
@@ -193,11 +193,11 @@ public class UserController {
 		
 }
 		@CrossOrigin(value="http://localhost:4200")
-		@RequestMapping (value = "/updateuser", method = RequestMethod.PUT, consumes= "application/json")
+		@RequestMapping (value = "/updateuser", method = RequestMethod.POST, consumes= "application/json")
 		public ResponseEntity<?> updateUserRole(@RequestBody String rev, HttpSession s) {
 			JSONObject js = new JSONObject(rev);
 			int id = js.getInt("Id");
-			String role = "MODERATOR";
+			String role = js.getString("userRole");
 			movieUserService.updateUserRole(role,id);
 			return new ResponseEntity<>(HttpStatus.OK);
 }

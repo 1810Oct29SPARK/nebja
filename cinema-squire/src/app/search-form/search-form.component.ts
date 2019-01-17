@@ -30,13 +30,11 @@ export class SearchFormComponent implements OnInit {
   searchMovies(movie: NgForm) {
     this.service.searchMovie(movie.value.movie).subscribe((data) => {
       this.movieResults = data;
-      console.log(this.movieResults);
     })
   }
 
   addToWatchlist(id) {
     this.service.addToWatchlist(id, this.user.userid).subscribe((data) => {
-      console.log(data);
       this.showAndHideModal();
     })
   }
@@ -44,7 +42,6 @@ export class SearchFormComponent implements OnInit {
   getMovie(id) {
     this.dataService.setMovieId(id);
     this.service.searchMovieById(id).subscribe((data) => {
-      console.log(data);
     })
   }
 

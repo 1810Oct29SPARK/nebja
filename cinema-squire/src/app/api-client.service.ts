@@ -66,7 +66,7 @@ export class ApiClientService {
   }
 
   getAllUsers() {
-    return this.http.get('http://localhost:8080/Nebja/home/')
+    return this.http.get('http://localhost:8082/Nebja/home/all');
   }
   
   uploadPhoto(photo, id): Observable<any> {
@@ -93,15 +93,20 @@ export class ApiClientService {
   }
 
   deleteUser(id) {
-    return this.http.delete('http://localhost:8080/Nebja/home/')
+    return this.http.post('http://localhost:8082/Nebja/user/deleteuser', {
+      "Id": id
+    })
   }
 
   deleteReview(): Observable <any> {
     return this.http.delete('http://localhost:8080/Nebja/home/')
   }
 
-  changeUserRole() {
-    // return this.http.put('http://localhost:8080/Nebja/home/', )
+  changeUserRole(id, role) {
+    return this.http.post('http://localhost:8082/Nebja/user/updateuser', {
+      "Id": id,
+      "userRole": role
+    });
   }
 
 

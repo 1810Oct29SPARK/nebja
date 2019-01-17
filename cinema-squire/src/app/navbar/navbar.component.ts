@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
    let username: string = f.value.username;
    let password: string = f.value.password;
   this.service.login(username, password).subscribe((data) => {
-    console.log(data);
     if (data != null) {
       this.dataService.setUser(data);
       this.router.navigateByUrl('/redirect');
@@ -47,7 +46,6 @@ export class NavbarComponent implements OnInit {
 
   newAccount(form: NgForm) {
     this.service.createAccount(form.value.Username, form.value.Password, form.value.Profile).subscribe((data) => {
-      console.log(data);
     })
   }
   ngOnInit() {

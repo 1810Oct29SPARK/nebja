@@ -15,7 +15,6 @@ export class NewsCarouselComponent implements OnInit {
   ngOnInit() {
     this.service.getNews().subscribe((data) =>{
       this.news = data;
-      console.log(this.news);
     })
   }
 

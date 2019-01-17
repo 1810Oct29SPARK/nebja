@@ -51,18 +51,16 @@
       <div class="col-md-1"></div>
       <div class="col-md-11">
         <div *ngIf="reviews; else elseBlock" id="myReviews">
-          <!-- *NgIf="user.reviews"-->
-          <!-- *NgFor="let review of reviews" -->
           <div *ngFor="let movie of movies; let i = index" class="user-review">
             <br>
             <h2 style="color:aliceblue">{{ movie.title }}</h2>
             <br>
-            <mat-card><img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" height="100px"> <h3>{{reviews[i][1]}}</h3>
-            <bar-rating [theme]="'stars'" [(ngModel)]="reviews[i][2]" name="score" [max]="5" required></bar-rating>
+            <mat-card><img src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}" height="100px">
+              <h3>{{reviews[i][1]}}</h3>
+              <bar-rating [theme]="'stars'" [(ngModel)]="reviews[i][2]" name="score" [max]="5" required></bar-rating>
             </mat-card>
           </div>
           <br>
-          <!-- *NgIf="!user.reviews"-->
           <ng-template #elseBlock style="color:aliceblue"> No reviews to display.</ng-template>
         </div>
       </div>
@@ -70,7 +68,7 @@
   </div>
   <br>
   <div *ngIf="wToggle">
-  <div *ngIf="watchlistItems" class="row">
+    <div *ngIf="watchlistItems" class="row">
       <div *ngFor="let wItem of watchlistItems; let i = index" class="col-md-4 mx-auto my-5">
         <mdb-card dark="true">
           <div class="view overlay waves-light" mdbWavesEffect>
@@ -80,56 +78,21 @@
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
-    
+
           <mdb-card-body class="elegant-color white-text">
-    
+
             <mdb-card-title>
               <h4>{{wItem.title}}</h4>
             </mdb-card-title>
-    
+
             <hr class="hr-light">
-            <button mat-raised-button class="btn btn-danger" (click)="deleteFromWatchlist(watchlist[i].watchid)">Remove from List</button>
+            <button mat-raised-button class="btn btn-danger" (click)="deleteFromWatchlist(watchlist[i].watchid)">Remove
+              from List</button>
           </mdb-card-body>
         </mdb-card>
       </div>
     </div>
   </div>
-  <!-- <div id="watchlist-section" class="col-md-12">
-    <div id="watchlist-title">
-      <h2>My Watchlist <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </h2>
-    </div>
-    <div class="col-md-1"></div>
-    <br>
-    <div id="watchlist-display" class="col-md-11">
-      <div class="col-md-1"></div>
-      <div class="col-md-11">
-        <div *ngFor="let movie of movies.results" class="col-md-4 mx-auto my-5">
-          <mdb-card dark="true">
-            <div class="view overlay waves-light" mdbWavesEffect>
-              <mdb-card-img *ngIf="movie.poster_path" src="https://image.tmdb.org/t/p/w300{{ movie.poster_path }}"></mdb-card-img>
-              <mdb-card-img *ngIf="!movie.poster_path" src="https://popcornusa.s3.amazonaws.com/placeholder-movieimage.png"></mdb-card-img>
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-
-            <mdb-card-body class="elegant-color white-text">
-
-              <mdb-card-title>
-                <h4>{{movie.title}}</h4>
-              </mdb-card-title>
-
-              <hr class="hr-light">
-
-              <mdb-card-text class="white-text">
-                Release Date: {{movie.release_date}}
-              </mdb-card-text>
-            </mdb-card-body>
-          </mdb-card>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <br>
   <br>
 </div>

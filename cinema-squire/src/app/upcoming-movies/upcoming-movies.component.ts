@@ -16,14 +16,12 @@ export class UpcomingMoviesComponent implements OnInit {
   getMovie(id) {
     this.dataService.setMovieId(id);
     this.service.searchMovieById(id).subscribe((data) => {
-      console.log(data);
     })
   }
 
   ngOnInit() {
     this.service.getUpcomingMovies().subscribe((data) => {
       this.movies = data;
-      console.log(this.movies);
     })
   }
 
