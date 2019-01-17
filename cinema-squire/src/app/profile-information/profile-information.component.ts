@@ -47,6 +47,9 @@ export class ProfileInformationComponent implements OnInit {
         });
       }
 
+    });
+    this.service.getWatchlist(this.user.userid).subscribe((data) => {
+      console.log(data);
     })
   }
 

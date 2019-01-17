@@ -17,8 +17,14 @@ export class ApiClientService {
     });
   }
 
+  getWatchlist(userId): Observable<any> {
+    return this.http.post('http://localhost:8082/Nebja/user/watchlist', {
+      "userId": userId
+    })
+  }
+
   addToWatchlist(movieId, userId): Observable<any> {
-    return this.http.post('http://locahost:8082/Nebja/user/addwatchlist', {
+    return this.http.post('http://localhost:8082/Nebja/user/addwatchlist', {
       "userId": userId,
       "movieId": movieId
     });
