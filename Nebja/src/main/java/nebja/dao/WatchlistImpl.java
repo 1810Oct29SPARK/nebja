@@ -40,4 +40,16 @@ public class WatchlistImpl implements WatchlistDAO {
 			return list;
 	}
 }
+
+
+	@Override
+	public void deleteWatchlist(int id) {
+		try(Session s = sf.getCurrentSession()){
+			Transaction tx = s.beginTransaction();
+			Watchlist w = s.get(Watchlist.class, id);
+			s.delete(w);
+			tx.commit();
+			s.close();
+	}
+}
 }

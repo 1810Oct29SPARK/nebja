@@ -25,4 +25,11 @@ WatchlistDAO wd = new WatchlistImpl();
 		return wd.getWatchlist(id);
 	}
 
+	@Override
+	public void deleteWatchlist(int id) {
+		// TODO Auto-generated method stub
+		wd.deleteWatchlist(id);
+	}
+
+	
 }
