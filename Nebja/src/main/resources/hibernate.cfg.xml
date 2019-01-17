@@ -17,5 +17,6 @@
        		<mapping class= "nebja.beans.Review"></mapping>
        		<mapping class= "nebja.beans.Movie"></mapping>
        		<mapping class= "nebja.beans.Comment"></mapping>
+       		<mapping class= "nebja.beans.Watchlist"></mapping>
         	</session-factory>
         </hibernate-configuration>

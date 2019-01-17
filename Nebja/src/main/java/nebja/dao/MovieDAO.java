@@ -14,5 +14,5 @@ public interface MovieDAO {
 	public String getMovieTitle(int movieid);
 	public void addMovie(Movie movie);
 	public void addMovieWatch(int id, int anotherid);
-	public void createMovie(String username,Movie movie);
+//	public void createMovie(String username,Movie movie);
 }

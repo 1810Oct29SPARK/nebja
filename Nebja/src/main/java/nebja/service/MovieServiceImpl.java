@@ -44,9 +44,6 @@ public class MovieServiceImpl implements MovieService {
 		 md.addMovie(movie);
 	}
 
-	@Override
-	public void addToWatchlist(String username, Movie movie) {
-		md.createMovie(username, movie);
-	}
+
 
 }

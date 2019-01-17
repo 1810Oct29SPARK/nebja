@@ -42,9 +42,9 @@ public User(String username, String password) {
 public User() {
 	
 }
+
+
 @Id
-@GeneratedValue(strategy= GenerationType.AUTO,generator="userSequence")
-@SequenceGenerator(allocationSize=1, name="userSequence", sequenceName= "SQ_USER_PK")
 @Column(name="USER_ID")
 private int userid;
 @Column	(name="USERNAME")
@@ -63,16 +63,16 @@ private Comment comment;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "REVIEW_ID", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
 private Review review;
-@ManyToMany(cascade = CascadeType.ALL)
+@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 @JoinTable(name = "MOVIEUSER_MOVIE", joinColumns = { @JoinColumn(name = "USER_ID")} ,inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID")})
-private List<Movie> movies;
+/*private List<Movie> movies;
 public List<Movie> getMovies() {
 	return movies;
 }
 
-public void setMovies(List<Movie> movies) {
+/*public void setMovies(List<Movie> movies) {
 	this.movies = movies;
-}
+}*/
 
 public String getUsername() {
 	return username;
