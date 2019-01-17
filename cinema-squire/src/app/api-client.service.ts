@@ -17,13 +17,6 @@ export class ApiClientService {
     });
   }
 
-  addMovie(id, title): Observable<any> {
-   return this.http.post('http://localhost:8080/Nebja/', {
-      "movieId": id,
-      "title": title
-    });
-  }
-
   addToWatchlist(userId, movieId): Observable<any> {
     return this.http.post('', {
       "userId": userId,
@@ -32,27 +25,28 @@ export class ApiClientService {
   }
 
   getReviewsByMovieId(id): Observable<any> {
-    return this.http.post('http://localhost:8082/Nebja/login/sent', {
+    return this.http.post('http://localhost:8082/Nebja/user/moviereview', {
       "movieId": id
     }); 
   }
 
   getReviewsByUserId(id): Observable<any> {
-    return this.http.post('http://localhost:8082/Nebja/login/sent', {
+    return this.http.post('http://localhost:8082/Nebja/user/userreview', {
       "userId": id
     });
   }
 
-  submitReview(score, review, userId): Observable<any>{
+  submitReview(score, review, movieId, userId): Observable<any>{
     return this.http.post('http://localhost:8082/Nebja/user/review', {
       "score": score,
       "review": review,
+      "movieId": movieId,
       "userId": userId
     });
   }
 
   createAccount(user, pass, profileInfo): Observable<any> {
-    return this.http.post('http://localhost:8082/Nebja/home/newuser', {
+    return this.http.post('http://localhost:8082/Nebja/user/newuser', {
       "Username": user,
       "Password": pass,
       "Profile": profileInfo
