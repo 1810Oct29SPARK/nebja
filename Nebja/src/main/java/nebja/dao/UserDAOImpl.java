@@ -184,18 +184,10 @@ public void updateUserRole(String userrole, int id) {
 	try(Session s = sf.getCurrentSession()){
 		Transaction tx = s.beginTransaction();
 		User u = (User) s.get(User.class, id);
-		if (userrole.equals("USER")) {
-			u.setUserrole("USER");
-			tx.commit();
-			s.close();
-		}
-		if (userrole.equals("MODERATOR")) {
-			u.setUserrole("MODERATOR");
-		}
-		else {
-			u.setUserrole("USER");
-			
-		}
+		u.setUserrole(userrole);
+		tx.commit();
+		s.close();
+		
 			
 		}
 	

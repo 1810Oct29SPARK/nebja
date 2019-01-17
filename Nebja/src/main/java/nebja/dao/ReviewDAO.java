@@ -8,6 +8,7 @@ public interface ReviewDAO {
 public List<Review> getAllReviews();
 public String getUserReview(int id);
 public void createUserReview(Review review);
-public Review getUserReviews(int id);
+public List getUserReviews(int id);
 public void deleteReview(int id);
+public List getUserReviewsbyMovieid(int id);
 }

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import nebja.beans.Movie;
+import nebja.beans.User;
 import nebja.util.NebjaUtil;
 
 public class MovieDAOImpl implements MovieDAO {
@@ -62,6 +63,40 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 		
 	}
 	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void createMovie(String username,Movie movie) {
+	    try(Session s = sf.getCurrentSession()){
+	        List<Movie> movies = new ArrayList<>();
+	        System.out.println("name in createMovie in dao impl:"+username);
+	        Transaction tx = s.beginTransaction();
+	        org.hibernate.Query query = s.createQuery("from User where username= :username").setParameter("username", username);
+	        List list = query.list();
+	        User user = (User) query.uniqueResult();
+	        boolean notInDatabase=true;
+	        movies = s.createQuery("from Movie").getResultList();
+	        for(Movie movieInList: movies)
+	        {
+	            System.out.println(movieInList);
+	            if(movie.getTitle().equals(movieInList.getTitle()))
+	            {
+	                System.out.println("movie match: "+movieInList);
+	                user.getMovies().add(movieInList);
+	                notInDatabase=false;
+	                tx.commit();
+	                s.close();
+	                break;
+	            }
+	        }
+	        if(notInDatabase==true)
+	        {
+	        user.getMovies().add(movie);
+	        tx.commit();
+	        s.close();
+	        }
+	    }
+	}
+	
 	public void addMovie(Movie movie) {
 		try(Session s = sf.getCurrentSession()){
 			Transaction tx = s.beginTransaction();
@@ -70,5 +105,10 @@ static SessionFactory sf = NebjaUtil.getSessionFactory();
 			s.close();
 			
 	}
+	}
+		public void addMovieWatch(int id, int anotherid){
+			try(Session s = sf.getCurrentSession()){
+				Transaction tx = s.beginTransaction();
+		}
 	}
 }

@@ -66,7 +66,7 @@ private Review review;
 @ManyToMany(cascade = CascadeType.ALL)
 @JoinTable(name = "MOVIEUSER_MOVIE", joinColumns = { @JoinColumn(name = "USER_ID")} ,inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID")})
 private List<Movie> movies;
-private List<Movie> getMovies() {
+public List<Movie> getMovies() {
 	return movies;
 }
 

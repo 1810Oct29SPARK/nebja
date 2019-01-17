@@ -31,4 +31,22 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	}
 
+	@Override
+	public List getUserReviews(int id) {
+		// TODO Auto-generated method stub
+		return rd.getUserReviews(id);
+	}
+
+	@Override
+	public void deleteReview(int id) {
+		// TODO Auto-generated method stub
+		rd.deleteReview(id);
+	}
+
+	@Override
+	public List getUserReviewsbyMovieid(int id) {
+		// TODO Auto-generated method stub
+		return rd.getUserReviewsbyMovieid(id);
+	}
+
 }
