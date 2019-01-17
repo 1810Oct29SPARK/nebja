@@ -217,4 +217,13 @@ public class UserController {
 			Watchlist wl = watchListService.addWatchList(new Watchlist(movieid,userid));
 			return new ResponseEntity<>(wl,HttpStatus.OK);
 		}
+		
+		@CrossOrigin(value="http://localhost:4200")
+		@RequestMapping (value = "/deletewatchlist", method = RequestMethod.POST, consumes= "application/json")
+		public ResponseEntity<?> deleteWatchList(@RequestBody String rev, HttpSession s) {
+			JSONObject js = new JSONObject(rev);
+			int watchlistid = js.getInt("watchlistId");
+			watchListService.deleteWatchlist(watchlistid);
+			return new ResponseEntity<>(HttpStatus.OK);
+}
 }
